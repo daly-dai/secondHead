@@ -2,9 +2,9 @@
   <div>
     <van-form validate-first @failed="onFailed" @submit="onSubmit">
       <van-field
-        v-model="username"
-        name="用户名"
-        label="用户名"
+        v-model="email"
+        name="邮箱"
+        label="邮箱"
         placeholder="admin"
         :rules="[{ required: true, message: '请填写用户名' }]"
       />
@@ -28,12 +28,12 @@
 <script>
 import { ROOT_PAGE_NAME } from '@config/index.js';
 import { mapActions } from 'vuex';
-import md5 from 'js-md5';
+// import md5 from 'js-md5';
 
 export default {
   data() {
     return {
-      username: '',
+      email: '',
       password: ''
     };
   },
@@ -41,8 +41,8 @@ export default {
     ...mapActions(['platform/handleLogin']),
     onSubmit() {
       this['platform/handleLogin']({
-        userName: this.username,
-        password: md5(this.password)
+        email: this.email,
+        password: this.password
       })
         .then((resData) => {
           this.$router.push({ name: ROOT_PAGE_NAME });

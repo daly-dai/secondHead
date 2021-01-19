@@ -29,28 +29,29 @@ const getters = {
 };
 const actions = {
   // 登录
-  handleLogin({ commit, state }, { userName, password }) {
+  handleLogin({ commit, state }, { email, password }) {
     return new Promise((resolve, reject) => {
       // 根据具体请求结果返回 解决（或拒绝）
       Vue.prototype.$api['login/doLogin']({
-        data: { userName, password },
+        data: { email, password },
         headers: {
           'Content-Type': 'application/x-www-form-urlencoded; charset=UTF-8'
         }
       })
-        .then(resData => {
+        .then(res => {
+          console.log(res, 89898989);
           if (
-            resData.code === Vue.prototype.$constant.apiServeCode.SUCCESS_CODE
+            res.code === Vue.prototype.$constant.apiServeCode.SUCCESS_CODE
           ) {
-            this.dispatch('setUserData', { data: resData.data }); // 调用外部的根 store 赋值 data
-            commit('UPDATE_DATA', resData.data);
+            this.dispatch('setUserData', { data: res.data }); // 调用外部的根 store 赋值 data
+            commit('UPDATE_DATA', res.data);
             // 设置通用请求头参数
             this.dispatch('platform/setApiHeaderParams', {
-              token: _get(resData, 'data.token')
+              token: _get(res, 'data.token')
             });
-            resolve(resData);
+            resolve(res);
           } else {
-            reject(_get(resData, 'msg', '登录失败'));
+            reject(_get(res, 'msg', '登录失败'));
           }
         })
         .catch(error => {
@@ -66,9 +67,9 @@ const actions = {
       Vue.prototype.$api['login/logout']({
         headers: { token: state.token }
       })
-        .then(resData => {
+        .then(res => {
           if (
-            resData.code === Vue.prototype.$constant.apiServeCode.SUCCESS_CODE
+            res.code === Vue.prototype.$constant.apiServeCode.SUCCESS_CODE
           ) {
             this.dispatch('platform/handlerDestroy');
           }
@@ -81,8 +82,8 @@ const actions = {
     });
   },
   // 更新用户信息
-  updateData({ commit, state }, resData) {
-    commit('UPDATE_DATA', resData.data);
+  updateData({ commit, state }, res) {
+    commit('UPDATE_DATA', res.data);
   },
   // 销毁缓存和变量
   handlerDestroy({ commit, state }) {
