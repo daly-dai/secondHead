@@ -7,20 +7,7 @@ const routes = [
   {
     path: '/',
     name: ROOT_PAGE_NAME,
-    component: () => import(/* webpackChunkName:"views/platform" */ '../../views/platform/index.vue')
-    /* beforeEnter: (to, from, next) => {
-      console.info('444444444444 ');
-      next()
-    }, */
-    // children: []
-    /* children: [
-      {
-        path: 'personal',
-        name: 'personal',
-        meta: { title: '个人中心' },
-        component: () => import('../../../views/personal/index.vue')
-      }
-    ] */
+    component: () => import(/* webpackChunkName:"views/platform" */ '../../views/home/index.vue')
   },
   {
     path: `/${LOGIN_PAGE_NAME}`,

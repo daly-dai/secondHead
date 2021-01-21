@@ -39,7 +39,6 @@ const actions = {
         }
       })
         .then(res => {
-          console.log(res, 89898989);
           if (
             res.code === Vue.prototype.$constant.apiServeCode.SUCCESS_CODE
           ) {
@@ -49,6 +48,7 @@ const actions = {
             this.dispatch('platform/setApiHeaderParams', {
               token: _get(res, 'data.token')
             });
+
             resolve(res);
           } else {
             reject(_get(res, 'msg', '登录失败'));
@@ -73,6 +73,7 @@ const actions = {
           ) {
             this.dispatch('platform/handlerDestroy');
           }
+
           resolve();
         })
         .catch(error => {
