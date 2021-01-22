@@ -23,7 +23,7 @@ export const ROUTER_WHITE_LIST = ['404'];
 // 路由默认配置
 export const ROUTER_DEFAULT_CONFIG = {
   mode: 'history', // 路由模式 hash、history
-  base: '/mobile/', // 配置单页应用的基路径
+  base: '/', // 配置单页应用的基路径
   transitionOnLoad: true,
   scrollBehavior: () => ({ y: 0 })
 };

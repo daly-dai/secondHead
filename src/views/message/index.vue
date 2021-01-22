@@ -1,12 +1,8 @@
 <template>
-  <div :class="layout">
-    <router-view></router-view>
-  </div>
+  <div>消息</div>
 </template>
 <script>
 export default {
-  components: {},
-
   data() {
     return {};
   },
@@ -15,7 +11,4 @@ export default {
 };
 </script>
 <style lang='less' module>
-.layout {
-  position: relative;
-}
 </style>

@@ -1,14 +1,10 @@
 <template>
-  <div :class="$style.bottom">
-
-  </div>
+  <div>社区</div>
 </template>
 <script>
 export default {
   data() {
-    return {
-
-    };
+    return {};
   },
   created() {},
   methods: {}

@@ -6,6 +6,20 @@
   "description": "",
   "glyphs": [
     {
+      "icon_id": "19580813",
+      "name": "plus",
+      "font_class": "plus",
+      "unicode": "e648",
+      "unicode_decimal": 58952
+    },
+    {
+      "icon_id": "19580716",
+      "name": "shequ",
+      "font_class": "shequ",
+      "unicode": "e649",
+      "unicode_decimal": 58953
+    },
+    {
       "icon_id": "19517855",
       "name": "shouji",
       "font_class": "shouji",

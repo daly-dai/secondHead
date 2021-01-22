@@ -1,11 +1,11 @@
 const svgIcon = {
-  name: 'BaseSvgIcon',
+  name: 'baseSvgIcon',
   props: {
     size: {
       type: [Number, String],
       default: 0
     },
-    iconname: {
+    iconName: {
       type: String,
       default: ''
     },
@@ -35,7 +35,7 @@ const svgIcon = {
             'aria-hidden': true
           }
         }, [h('use',
-          { attrs: { 'xlink:href': '#' + this.iconname } }, []
+          { attrs: { 'xlink:href': '#' + this.iconName } }, [console.log(this.iconName, 909090)]
         )]
       )]);
   }

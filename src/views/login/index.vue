@@ -1,7 +1,13 @@
 <template>
   <div :class="$style.login">
+    <p :class="$style.loginTitle">易趣</p>
     <div :class="$style.loginForm">
-      <van-form validate-first label-width="30" @failed="onFailed" @submit="onSubmit">
+      <van-form
+        validate-first
+        label-width="30"
+        @failed="onFailed"
+        @submit="onSubmit"
+      >
         <van-field
           v-model="email"
           name="邮箱"
@@ -18,7 +24,13 @@
           :rules="[{ required: true, message: '请填写密码' }]"
         />
         <div style="margin: 16px">
-          <van-button color="#ffd95f" round block type="info" native-type="submit">
+          <van-button
+            color="#ffd95f"
+            round
+            block
+            type="info"
+            native-type="submit"
+          >
             提交
           </van-button>
         </div>
@@ -68,10 +80,20 @@ export default {
   background: url(/static/images/login.png) no-repeat center center;
   position: relative;
 
+  &-title {
+    position: absolute;
+    width: 70%;
+    top: 18%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    font-size: 58px;
+    letter-spacing: 5px;
+  }
+
   &-form {
     position: absolute;
     width: 70%;
-    top: 70%;
+    top: 75%;
     left: 50%;
     transform: translate(-50%, -50%);
   }
