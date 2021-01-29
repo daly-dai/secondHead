@@ -25,6 +25,9 @@ const getters = {
   },
   getRefreshToken: state => {
     return state.refreshToken;
+  },
+  getUserData: state => {
+    return state.userData;
   }
 };
 const actions = {

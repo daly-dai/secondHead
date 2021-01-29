@@ -1,20 +1,41 @@
 <!DOCTYPE html>
 <html lang="en">
-  <head>
-    ${ require('raw-loader!./meta.html')}
-    <title><%= htmlWebpackPlugin.options.title %></title>
-    ${ require('raw-loader!./link.html')}
-    <script>
-      ${require('raw-loader!@static/plugins/lib-flexible/0.3.2/flexible.js')}
-    </script>
-    <% for(var i=0,len=htmlWebpackPlugin.options.outsideCss.length;i<len;i++ ){ %>
-      <link rel="stylesheet" href="<%= htmlWebpackPlugin.options.outsideCss[i] %>">
-    <% } %>
-  </head>
-  <body>
-    <div id="app"></div>
-    <% for(var i=0,len=htmlWebpackPlugin.options.outsideJs.length;i<len;i++ ){ %>
-      <script src="<%= htmlWebpackPlugin.options.outsideJs[i] %>"></script>
-    <% } %>
-  </body>
+
+<head>
+  ${ require('raw-loader!./meta.html')}
+  <title><%= htmlWebpackPlugin.options.title %></title>
+  ${ require('raw-loader!./link.html')}
+  <script>
+    $ {
+      require('raw-loader!@static/plugins/lib-flexible/0.3.2/flexible.js')
+    }
+
+  </script>
+  <script src="https://cdn.bootcdn.net/ajax/libs/vConsole/3.3.4/vconsole.min.js"></script>
+  <script>
+    // 初始化
+    var vConsole = new VConsole();
+
+  </script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/socket.io/2.2.0/socket.io.js"></script>
+  <script>
+    // const socket = io("http://localhost:5000");
+    // const userInfo = JSON.parse(localStorage.getItem("userInfo"));
+    // if (userInfo) {
+    //   socket.emit("update", userInfo.user_id);
+    // }
+
+  </script>
+  <% for(var i=0,len=htmlWebpackPlugin.options.outsideCss.length;i<len;i++ ){ %>
+  <link rel="stylesheet" href="<%= htmlWebpackPlugin.options.outsideCss[i] %>">
+  <% } %>
+</head>
+
+<body>
+  <div id="app"></div>
+  <% for(var i=0,len=htmlWebpackPlugin.options.outsideJs.length;i<len;i++ ){ %>
+  <script src="<%= htmlWebpackPlugin.options.outsideJs[i] %>"></script>
+  <% } %>
+</body>
+
 </html>

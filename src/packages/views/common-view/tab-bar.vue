@@ -1,3 +1,11 @@
+<!--
+ * @Author: your name
+ * @Date: 2021-01-21 15:45:41
+ * @LastEditTime: 2021-01-25 10:06:02
+ * @LastEditors: Please set LastEditors
+ * @Description: In User Settings Edit
+ * @FilePath: \secondHand\src\packages\views\common-view\tab-bar.vue
+-->
 <template>
   <van-tabbar route v-model="active">
     <van-tabbar-item
@@ -29,12 +37,12 @@ export default {
           active: false,
           router: '/'
         },
-        {
-          name: '社区',
-          icon: 'iconshequ',
-          active: false,
-          router: '/community'
-        },
+        // {
+        //   name: '社区',
+        //   icon: 'iconshequ',
+        //   active: false,
+        //   router: '/community'
+        // },
         {
           name: '发布',
           icon: 'iconplus',
@@ -61,4 +69,7 @@ export default {
 };
 </script>
 <style lang='less' module>
+.bar-icon {
+  color: #fff;
+}
 </style>

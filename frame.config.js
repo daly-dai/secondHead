@@ -55,7 +55,8 @@ module.exports = {
     '@packages': 'src/packages',
     '@mock': 'src/mock',
     '@service': 'src/service',
-    '@store': 'src/store'
+    '@store': 'src/store',
+    '@common': 'src/common'
   },
   // 指定的依赖库不会被 splitChunks 分割到 otherDependencies 缓存组内
   removeOtherDependenciesCacheGroupsLibs: [
