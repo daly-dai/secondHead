@@ -22,12 +22,20 @@ import VAuthority from './directives/v-authority.js';
 // iconfont
 import '@/assets/font/iconfont/iconfont.css';
 import '@/assets/font/iconfont/iconfont.js';
+import SocketIO from 'vue-socket.io';
+import ClientSocketIO from 'socket.io-client';
 
 // ios延迟关闭 300ms延迟
 // fastClick.attach(document.body);
-fastClick.prototype.focus = function (targetElement) {
+fastClick.prototype.focus = targetElement => {
   let length;
-  if (targetElement.setSelectionRange && targetElement.type.indexOf('date') !== 0 && targetElement.type !== 'time' && targetElement.type !== 'month' && targetElement.type !== 'email') {
+  if (
+    targetElement.setSelectionRange &&
+    targetElement.type.indexOf('date') !== 0 &&
+    targetElement.type !== 'time' &&
+    targetElement.type !== 'month' &&
+    targetElement.type !== 'email'
+  ) {
     length = targetElement.value.length;
     targetElement.focus();
     targetElement.setSelectionRange(length, length);
@@ -42,6 +50,15 @@ window.GvBus.vBus = new Vue({
     // 自定义扩展实例属性，程序中可以监听 vBus 中的属性（状态存储是响应式的），触发自身的业务逻辑
   }
 });
+
+Vue.use(
+  new SocketIO({
+    debug: true,
+    connection: ClientSocketIO.connect('http://localhost:5000/', {
+      transports: ['websocket']
+    })
+  })
+);
 
 Vue.use(inject);
 Vue.use(itemComponents);
@@ -63,6 +80,20 @@ window.vm = new Vue({
     // 模块常量
     console.info(this.$constant);
     console.info(process.env.VUE_APP_TEST, process.env.VUE_APP_ENV);
+  },
+  sockets: {
+    disconnect() {
+      console.log('Socket 断开');
+    },
+    connect_failed() {
+      console.log('连接失败');
+    },
+    connect() {
+      console.log('socket connected');
+    },
+    test1() {
+      console.log('test1');
+    }
   },
   render: h => h(App)
 }).$mount('#app');

@@ -22,11 +22,20 @@ export default {
     };
   },
   created() {},
+  mounted() {
+    // eslint-disable-next-line no-undef
+    const loginId = this.$store.getters.getUserData;
+    console.log(loginId, 6767);
+    this.$socket.emit('login', loginId);
+  },
   methods: {
     /**
      * @description 初始化页面
      */
-    initSocket() {},
+    initSocket() {
+      // eslint-disable-next-line no-undef
+      // this.$socket.emit('login', loginId);
+    },
     /**
      * @description 用socket 发消息
      */
