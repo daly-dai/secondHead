@@ -18,23 +18,29 @@
 export default {
   data() {
     return {
-      value: ''
+      value: '',
+      to_user: '6d6e81d0-65ca-11eb-a3ab-0b952ebd2531'
     };
+  },
+  sockets: {
+    connect() {
+      // this.$socket.emit('sendPrivateMsg', '测试信息');
+    }
   },
   created() {},
   mounted() {
-    // eslint-disable-next-line no-undef
-    const loginId = this.$store.getters.getUserData;
-    console.log(loginId, 6767);
-    this.$socket.emit('login', loginId);
+    const { id } = this.$store.getters.getUserData;
+
+    this.$socket.emit('login', id);
   },
   methods: {
     /**
      * @description 初始化页面
      */
     initSocket() {
-      // eslint-disable-next-line no-undef
-      // this.$socket.emit('login', loginId);
+      const { id } = this.$store.getters.getUserData;
+
+      this.$socket.emit('login', id);
     },
     /**
      * @description 用socket 发消息
@@ -51,7 +57,7 @@ export default {
   &-bottom {
     width: 100%;
     position: absolute;
-    bottom: 120px;
+    bottom: 500px;
   }
 }
 </style>

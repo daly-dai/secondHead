@@ -35,7 +35,7 @@ const svgIcon = {
             'aria-hidden': true
           }
         }, [h('use',
-          { attrs: { 'xlink:href': '#' + this.iconName } }, [console.log(this.iconName, 909090)]
+          { attrs: { 'xlink:href': '#' + this.iconName } }, []
         )]
       )]);
   }

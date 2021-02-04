@@ -54,7 +54,7 @@ window.GvBus.vBus = new Vue({
 Vue.use(
   new SocketIO({
     debug: true,
-    connection: ClientSocketIO.connect('http://localhost:5000/', {
+    connection: ClientSocketIO.connect('http://localhost:5001/', {
       transports: ['websocket']
     })
   })
