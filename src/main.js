@@ -51,15 +51,6 @@ window.GvBus.vBus = new Vue({
   }
 });
 
-Vue.use(
-  new SocketIO({
-    debug: true,
-    connection: ClientSocketIO.connect('http://localhost:5001/', {
-      transports: ['websocket']
-    })
-  })
-);
-
 Vue.use(inject);
 Vue.use(itemComponents);
 Vue.use(vueLink);
@@ -71,6 +62,15 @@ Vue.config.ignoredElements = []; // 忽略在 Vue 之外的自定义元素
 Vue.config.keyCodes = {}; // 给 v-on 自定义键位别名
 Vue.config.productionTip = false;
 
+Vue.use(
+  new SocketIO({
+    debug: true,
+    connection: ClientSocketIO.connect('http://localhost:5001/', {
+      transports: ['websocket']
+    })
+  })
+);
+
 window.vm = new Vue({
   router,
   store,
@@ -78,8 +78,8 @@ window.vm = new Vue({
     // 载入远程字典
     // this.$dict.import(this.$api['dict/getDictDataByTypeList']())
     // 模块常量
-    console.info(this.$constant);
-    console.info(process.env.VUE_APP_TEST, process.env.VUE_APP_ENV);
+    // console.info(this.$constant);
+    // console.info(process.env.VUE_APP_TEST, process.env.VUE_APP_ENV);
   },
   sockets: {
     disconnect() {

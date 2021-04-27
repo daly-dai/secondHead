@@ -58,10 +58,12 @@ export default {
         email: this.email,
         password: this.password
       })
-        .then((resData) => {
+        .then(res => {
+          // 登录的时候对scoket进行更新
+          this.$socket.emit('login', res.data.id);
           this.$router.push({ name: ROOT_PAGE_NAME });
         })
-        .catch((error) => {
+        .catch(error => {
           console.info(error);
         });
     },
@@ -72,7 +74,7 @@ export default {
 };
 </script>
 
-<style lang="less"  module>
+<style lang="less" module>
 .login {
   width: 100%;
   height: 100%;

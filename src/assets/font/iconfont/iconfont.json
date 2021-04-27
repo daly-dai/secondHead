@@ -6,9 +6,37 @@
   "description": "",
   "glyphs": [
     {
-      "icon_id": "19580813",
-      "name": "plus",
-      "font_class": "plus",
+      "icon_id": "19099110",
+      "name": "Car",
+      "font_class": "Car",
+      "unicode": "e64b",
+      "unicode_decimal": 58955
+    },
+    {
+      "icon_id": "15726856",
+      "name": "母婴玩具",
+      "font_class": "muyingwanju",
+      "unicode": "e64a",
+      "unicode_decimal": 58954
+    },
+    {
+      "icon_id": "17549044",
+      "name": "游戏",
+      "font_class": "youxi",
+      "unicode": "ee25",
+      "unicode_decimal": 60965
+    },
+    {
+      "icon_id": "5379855",
+      "name": "book1",
+      "font_class": "book",
+      "unicode": "e6f3",
+      "unicode_decimal": 59123
+    },
+    {
+      "icon_id": "19612449",
+      "name": "fabu",
+      "font_class": "fabu",
       "unicode": "e648",
       "unicode_decimal": 58952
     },
