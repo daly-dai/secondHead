@@ -37,15 +37,9 @@ export default {
           active: false,
           router: '/'
         },
-        // {
-        //   name: '社区',
-        //   icon: 'iconshequ',
-        //   active: false,
-        //   router: '/community'
-        // },
         {
           name: '发布',
-          icon: 'iconplus',
+          icon: 'iconfabu1',
           active: false,
           router: '/publish'
         },
@@ -68,7 +62,7 @@ export default {
   methods: {}
 };
 </script>
-<style lang='less' module>
+<style lang="less" module>
 .bar-icon {
   color: #fff;
 }

@@ -12,17 +12,27 @@
       </div>
     </div>
     <div :class="$style.homeCenter">
-      <div :class="$style.centerClass">
+      <div
+        :class="$style.homeCenterItem"
+        v-for="(item, index) of mainMenu"
+        :key="index"
+        @click="selectMainMenu(index)"
+      >
         <div
-          :class="$style.centerClassItem"
-          v-for="(item, index) of classList"
-          :key="index"
+          :class="[$style.itemIcon, currentMain === index ? $style.active : '']"
         >
-          <i></i>
-          <span>{{ item.name }}</span>
+          <i class="iconfont" :class="item.icon"></i>
+        </div>
+        <div
+          :class="{
+            [$style.itemName]: true
+          }"
+        >
+          {{ item.name }}
         </div>
       </div>
     </div>
+    <div :class="$style.goodsContent"></div>
     <div :class="$style.homeBottom">
       <span>猜您喜欢</span>
     </div>
@@ -30,71 +40,30 @@
   </div>
 </template>
 <script>
+import { mainMenu } from './static';
 export default {
   name: 'home',
   data() {
     return {
       show: false,
-      classList: [
-        {
-          name: '数码',
-          icon: 'iconxiangji',
-          url: '',
-          key: ''
-        },
-        {
-          name: '图书',
-          icon: 'iconyouhuiquan',
-          url: '',
-          key: ''
-        },
-        {
-          name: '游戏',
-          icon: 'iconyouxi',
-          url: '',
-          key: ''
-        },
-        {
-          name: '体育',
-          icon: 'iconyundong',
-          url: '',
-          key: ''
-        },
-        {
-          name: '母婴用品',
-          icon: 'iconmuyingwanju',
-          url: '',
-          key: ''
-        },
-        {
-          name: '特价零食',
-          icon: 'iconpisa',
-          url: '',
-          key: ''
-        },
-        {
-          name: '交通工具',
-          icon: 'iconCar',
-          url: '',
-          key: ''
-        },
-        {
-          name: '鞋帽服饰',
-          icon: 'iconzhuangbei',
-          url: '',
-          key: ''
-        }
-      ]
+      mainMenu: mainMenu,
+      currentMain: 0
     };
   },
   created() {},
-  methods: {}
+  methods: {
+    selectMainMenu(index) {
+      if (index === this.currentMain) return false;
+
+      this.currentMain = index;
+    }
+  }
 };
 </script>
 
 <style lang="less" module>
 .home {
-  padding: 40px 60px;
+  padding: 40px 0;
   &-head {
     display: flex;
     > div:first-child,
@@ -108,6 +77,52 @@ export default {
         width: 80%;
         margin: 0 auto;
         display: inline-block;
+      }
+    }
+  }
+
+  &-center {
+    background: url('/static/images/homeBg.png') no-repeat;
+    // background-color: rgba(255, 255, 255);
+    background-size: 100%;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: flex-start;
+    padding-top: 81px;
+
+    &-item {
+      width: 32%;
+      margin-bottom: 81px;
+      text-align: center;
+      .item-icon {
+        .flex-center;
+        width: 200px;
+        height: 200px;
+        margin: 0 auto;
+        background-color: rgba(255, 255, 255, 0.4);
+        border-radius: 160px;
+        /* stylelint-disable */
+        i {
+          font-size: 24px;
+          color: white;
+          margin-right: 0 !important;
+          display: inline-block;
+          position: absolute;
+        }
+      }
+
+      .active {
+        background-image: radial-gradient(
+          rgba(102, 230, 255),
+          rgba(0, 173, 255),
+          rgba(136, 223, 255)
+        );
+      }
+
+      .item-name {
+        margin-top: 30px;
+        font-size: 15px;
+        color: #333;
       }
     }
   }
