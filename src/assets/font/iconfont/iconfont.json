@@ -6,18 +6,46 @@
   "description": "",
   "glyphs": [
     {
-      "icon_id": "19099110",
-      "name": "Car",
-      "font_class": "Car",
-      "unicode": "e64b",
-      "unicode_decimal": 58955
+      "icon_id": "21240276",
+      "name": "tushu",
+      "font_class": "tushu1",
+      "unicode": "e605",
+      "unicode_decimal": 58885
     },
     {
-      "icon_id": "15726856",
-      "name": "母婴玩具",
-      "font_class": "muyingwanju",
-      "unicode": "e64a",
-      "unicode_decimal": 58954
+      "icon_id": "21240275",
+      "name": "jiaotong",
+      "font_class": "jiaotonggongju1",
+      "unicode": "e600",
+      "unicode_decimal": 58880
+    },
+    {
+      "icon_id": "21240268",
+      "name": "xiemaofushi",
+      "font_class": "fushi1",
+      "unicode": "e604",
+      "unicode_decimal": 58884
+    },
+    {
+      "icon_id": "21240267",
+      "name": "fabu",
+      "font_class": "fabu1",
+      "unicode": "e603",
+      "unicode_decimal": 58883
+    },
+    {
+      "icon_id": "21240264",
+      "name": "tejialingshi",
+      "font_class": "lingshi1",
+      "unicode": "e602",
+      "unicode_decimal": 58882
+    },
+    {
+      "icon_id": "21240160",
+      "name": "muying",
+      "font_class": "muying1",
+      "unicode": "e601",
+      "unicode_decimal": 58881
     },
     {
       "icon_id": "17549044",
@@ -25,20 +53,6 @@
       "font_class": "youxi",
       "unicode": "ee25",
       "unicode_decimal": 60965
-    },
-    {
-      "icon_id": "5379855",
-      "name": "book1",
-      "font_class": "book",
-      "unicode": "e6f3",
-      "unicode_decimal": 59123
-    },
-    {
-      "icon_id": "19612449",
-      "name": "fabu",
-      "font_class": "fabu",
-      "unicode": "e648",
-      "unicode_decimal": 58952
     },
     {
       "icon_id": "19580716",
@@ -162,7 +176,7 @@
     {
       "icon_id": "19517871",
       "name": "xiangji",
-      "font_class": "xiangji",
+      "font_class": "shuma",
       "unicode": "e616",
       "unicode_decimal": 58902
     },
@@ -508,6 +522,13 @@
       "font_class": "pisa",
       "unicode": "e647",
       "unicode_decimal": 58951
+    },
+    {
+      "icon_id": "21204889",
+      "name": "xiangji",
+      "font_class": "shuma-copy",
+      "unicode": "ee26",
+      "unicode_decimal": 60966
     }
   ]
 }
