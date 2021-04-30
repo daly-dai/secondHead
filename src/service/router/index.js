@@ -98,18 +98,14 @@ const routes = [
     }
   },
   {
-    path: '/helper',
-    name: 'helper',
-    component: () =>
-      import(
-        /* webpackChunkName:"views/helper" */ '../../views/helper/index.vue'
-      ),
-    meta: { title: '帮助中心' }
-  },
-  {
     path: '/user',
     name: 'user',
     component: () => import('../../views/user/index.vue')
+  },
+  {
+    path: '/goods-detail:id',
+    name: 'goods-detail',
+    component: () => import('@views/goods/goods-detail.vue')
   },
   // {
   //   path: '/personal',

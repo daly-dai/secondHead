@@ -6,6 +6,13 @@
   "description": "",
   "glyphs": [
     {
+      "icon_id": "4112887",
+      "name": "默认头像",
+      "font_class": "tubiaoku",
+      "unicode": "e671",
+      "unicode_decimal": 58993
+    },
+    {
       "icon_id": "21240276",
       "name": "tushu",
       "font_class": "tushu1",

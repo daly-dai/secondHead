@@ -1,5 +1,5 @@
 <template>
-  <div>发布也</div>
+  <div>发布页</div>
 </template>
 <script>
 export default {
@@ -10,5 +10,4 @@ export default {
   methods: {}
 };
 </script>
-<style lang='less' module>
-</style>
+<style lang="less" module></style>

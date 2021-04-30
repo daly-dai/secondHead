@@ -32,7 +32,33 @@
         </div>
       </div>
     </div>
-    <div :class="$style.goodsContent"></div>
+    <div :class="$style.goodsContent">
+      <div
+        :class="$style.goodsItem"
+        v-for="(item, index) of goodList"
+        :key="index"
+        @click="routerToDetail(33333)"
+      >
+        <div :class="$style.goodsItemImg">
+          <img src="/static/images/goodsPlaceholder.jpg" alt="" />
+        </div>
+
+        <div :class="$style.goodsItemTitle">
+          {{ item.goodsName }}
+        </div>
+        <div :class="$style.goodsItemPrice">
+          {{ item.price }}
+        </div>
+        <div :class="$style.goodsItemUser">
+          <span :class="$style.userAvatar">
+            <img v-if="item.avatar" :src="item.avatar" alt="" />
+            <!-- <i v-else class="iconfont icontubiaoku-"></i> -->
+            <base-svg-icon iconName="icontubiaoku"></base-svg-icon>
+          </span>
+          <span :class="$style.userName">{{ item.userName }}</span>
+        </div>
+      </div>
+    </div>
     <div :class="$style.homeBottom">
       <span>猜您喜欢</span>
     </div>
@@ -40,13 +66,14 @@
   </div>
 </template>
 <script>
-import { mainMenu } from './static';
+import { mainMenu, goodList } from './static';
 export default {
   name: 'home',
   data() {
     return {
       show: false,
       mainMenu: mainMenu,
+      goodList: goodList,
       currentMain: 0
     };
   },
@@ -56,6 +83,17 @@ export default {
       if (index === this.currentMain) return false;
 
       this.currentMain = index;
+    },
+    /**
+     * @description 跳转到商品详情页
+     */
+    routerToDetail(id) {
+      this.$router.push({
+        name: 'goods-detail',
+        params: {
+          id: 7777
+        }
+      });
     }
   }
 };
@@ -63,7 +101,8 @@ export default {
 
 <style lang="less" module>
 .home {
-  padding: 40px 0;
+  padding: 40px 0 120px;
+  background: #fff;
   &-head {
     display: flex;
     > div:first-child,
@@ -83,7 +122,6 @@ export default {
 
   &-center {
     background: url('/static/images/homeBg.png') no-repeat;
-    // background-color: rgba(255, 255, 255);
     background-size: 100%;
     display: flex;
     flex-wrap: wrap;
@@ -123,6 +161,56 @@ export default {
         margin-top: 30px;
         font-size: 15px;
         color: #333;
+      }
+    }
+  }
+
+  .goods-content {
+    margin-top: 30px;
+    .flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    align-items: center;
+
+    .goods-item {
+      width: 48%;
+      margin: 60px 0;
+
+      > div:nth-child(n + 2) {
+        padding-left: 10%;
+      }
+
+      &-img {
+        width: 100%;
+        height: 600px;
+        text-align: left;
+        text-align: center;
+
+        img {
+          width: 80%;
+          height: 100%;
+        }
+      }
+
+      &-title {
+        font-weight: 550;
+        font-size: 16px;
+        margin-top: 30px;
+      }
+
+      &-price {
+        color: red;
+        margin: 40px 0;
+        font-size: 16px;
+      }
+
+      &-user {
+        .flex;
+        font-size: 14px;
+
+        .user-name {
+          margin-left: 20px;
+        }
       }
     }
   }

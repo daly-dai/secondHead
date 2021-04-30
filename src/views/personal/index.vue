@@ -2,9 +2,7 @@
   <div>
     <p class="aaa">个人中心</p>
     <van-button size="small" @click="onOpenUserPage">路由跳转</van-button>
-    <div>
-      {{NAME_OF_CONSTANT[0].name}}&nbsp;{{OTHER}}
-    </div>
+    <div>{{ NAME_OF_CONSTANT[0].name }}&nbsp;{{ OTHER }}</div>
   </div>
 </template>
 
@@ -18,21 +16,21 @@ export default {
   methods: {
     onOpenUserPage() {
       console.info(this.$route);
-      this.$router.addRoutes([
-        {
-          path: '/ioio',
-          name: 'ioio',
-          component: () => import('../needs/index.vue')
-        }
-      ]);
-      this.$router.push('ioio');
+      // this.$router.addRoutes([
+      //   {
+      //     path: '/ioio',
+      //     name: 'ioio',
+      //     component: () => import('../needs/index.vue')
+      //   }
+      // ]);
+      // this.$router.push('ioio');
     }
   }
 };
 </script>
 
 <style>
-.aaa{
+.aaa {
   color: red;
   font-size: 14px;
 }
