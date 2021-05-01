@@ -52,7 +52,6 @@
         <div :class="$style.goodsItemUser">
           <span :class="$style.userAvatar">
             <img v-if="item.avatar" :src="item.avatar" alt="" />
-            <!-- <i v-else class="iconfont icontubiaoku-"></i> -->
             <base-svg-icon iconName="icontubiaoku"></base-svg-icon>
           </span>
           <span :class="$style.userName">{{ item.userName }}</span>

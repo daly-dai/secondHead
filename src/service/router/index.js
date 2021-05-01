@@ -105,7 +105,42 @@ const routes = [
   {
     path: '/goods-detail/:id',
     name: 'goods-detail',
-    component: () => import('@views/goods/goods-detail.vue')
+    component: () => import('@views/goods/goods-detail.vue'),
+    meta: {
+      title: '商品详情'
+    }
+  },
+  {
+    path: '/goods-confirm',
+    name: 'goods-confirm',
+    component: () => import('@views/goods/goods-confirm.vue'),
+    meta: {
+      title: '购买确认'
+    }
+  },
+  {
+    path: '/goods-buyer',
+    name: 'goods-buyer',
+    meta: {
+      title: '商品购买流程(买方)'
+    },
+    component: () => import('@views/goods/goods-buyer.vue')
+  },
+  {
+    path: '/goods-seller(卖方)',
+    name: 'goods-seller',
+    meta: {
+      title: '商品购买流程'
+    },
+    component: () => import('@views/goods/goods-seller.vue')
+  },
+  {
+    path: '/goods-evaluation',
+    name: 'goods-evaluation',
+    meta: {
+      title: '商品评价'
+    },
+    component: () => import('@views/goods/goods-evaluation.vue')
   },
   // {
   //   path: '/personal',
