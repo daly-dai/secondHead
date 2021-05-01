@@ -2,13 +2,13 @@
   <div :class="$style.home">
     <div :class="$style.homeHead">
       <div>
-        <span>易趣</span>
+        易趣
       </div>
       <div :class="$style.homeInput">
         <input type="text" />
       </div>
       <div>
-        <span>分类</span>
+        分类
       </div>
     </div>
     <div :class="$style.homeCenter">
@@ -105,17 +105,26 @@ export default {
   background: #fff;
   &-head {
     display: flex;
+    align-items: center;
+    height: 180px;
+    padding: 0 30px;
+
     > div:first-child,
     > div:last-child {
       width: 240px;
     }
 
+    > div:last-child {
+      text-align: right;
+    }
+
     .home-input {
       flex: 1;
+      text-align: center;
       input {
-        width: 80%;
-        margin: 0 auto;
-        display: inline-block;
+        width: 90%;
+        border: 0;
+        border: 1px solid rgba(153, 153, 153, 0.5);
       }
     }
   }
