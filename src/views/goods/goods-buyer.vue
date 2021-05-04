@@ -4,10 +4,6 @@
       <van-step v-for="(item, index) of statusList" :key="index">{{
         item
       }}</van-step>
-      <!-- <van-step>待发货</van-step>
-      <van-step>待收货</van-step>
-      <van-step>已收货</van-step>
-      <van-step>待评价</van-step> -->
     </van-steps>
 
     <div :class="$style.buyerStatus">
@@ -28,8 +24,6 @@
     </div>
 
     <div :class="$style.buyerBottom">
-      <!-- <p>取消购买</p>
-      <p>提醒发货</p> -->
       <p
         v-for="(item, index) of buttonsMap"
         :style="{
