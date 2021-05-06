@@ -37,60 +37,73 @@
         :class="$style.goodsItem"
         v-for="(item, index) of goodList"
         :key="index"
-        @click="routerToDetail(33333)"
+        @click="routerToDetail(item)"
       >
         <div :class="$style.goodsItemImg">
-          <img src="/static/images/goodsPlaceholder.jpg" alt="" />
+          <img :src="item.imgs[0]" alt="" />
         </div>
 
         <div :class="$style.goodsItemTitle">
-          {{ item.goodsName }}
+          {{ item.goodsname }}
         </div>
-        <div :class="$style.goodsItemPrice">
-          {{ item.price }}
-        </div>
+        <div :class="$style.goodsItemPrice">￥{{ item.price }}</div>
         <div :class="$style.goodsItemUser">
-          <span :class="$style.userAvatar">
-            <img v-if="item.avatar" :src="item.avatar" alt="" />
-            <base-svg-icon iconName="icontubiaoku"></base-svg-icon>
-          </span>
-          <span :class="$style.userName">{{ item.userName }}</span>
+          <div :class="$style.userAvatar">
+            <img v-if="item.avatar" :src="'https:' + item.avatar" alt="" />
+            <base-svg-icon v-else iconName="icontubiaoku"></base-svg-icon>
+          </div>
+          <span :class="$style.userName">{{ item.sellername }}</span>
         </div>
       </div>
     </div>
-    <div :class="$style.homeBottom">
+    <!-- <div :class="$style.homeBottom">
       <span>猜您喜欢</span>
-    </div>
+    </div> -->
     <van-popup v-model="show">内容</van-popup>
   </div>
 </template>
 <script>
-import { mainMenu, goodList } from './static';
+import { mainMenu } from './static';
 export default {
   name: 'home',
   data() {
     return {
       show: false,
       mainMenu: mainMenu,
-      goodList: goodList,
-      currentMain: 0
+      goodList: [],
+      currentMain: ''
     };
   },
-  created() {},
+  created() {
+    this.initPage();
+  },
   methods: {
+    // 初始化页面数据
+    initPage() {
+      const params = {
+        merchandiseCategory: this.currentMain
+      };
+
+      this.$api['home/getGoodsByType']({ params }).then(res => {
+        if (res.code === this.$constant.apiServeCode.SUCCESS_CODE) {
+          this.goodList = res.data;
+        }
+      });
+    },
     selectMainMenu(index) {
       if (index === this.currentMain) return false;
 
       this.currentMain = index;
+      this.initPage();
     },
     /**
      * @description 跳转到商品详情页
      */
-    routerToDetail(id) {
+    routerToDetail(item) {
       this.$router.push({
         name: 'goods-detail',
         params: {
-          id: 7777
+          id: item._id
         }
       });
     }
@@ -177,7 +190,7 @@ export default {
     margin-top: 30px;
     .flex;
     flex-wrap: wrap;
-    justify-content: center;
+    justify-content: flex-start;
     align-items: center;
 
     .goods-item {
@@ -214,9 +227,20 @@ export default {
 
       &-user {
         .flex;
-        font-size: 14px;
+        align-items: center;
+        height: 140px;
+
+        .user-avatar {
+          width: 80px;
+          height: 80px;
+          img {
+            width: 100%;
+            height: 100%;
+          }
+        }
 
         .user-name {
+          font-size: 14px;
           margin-left: 20px;
         }
       }

@@ -3,37 +3,37 @@ export const mainMenu = [
     name: '数码',
     icon: 'iconshuma',
     url: '',
-    key: ''
+    key: 0
   },
   {
     name: '图书',
     icon: 'icontushu1',
     url: '',
-    key: ''
+    key: 1
   },
   {
     name: '游戏',
     icon: 'iconyouxi',
     url: '',
-    key: ''
+    key: 2
   },
   {
     name: '体育',
     icon: 'iconyundong',
     url: '',
-    key: ''
+    key: 3
   },
   {
     name: '交通工具',
     icon: 'iconjiaotonggongju1',
     url: '',
-    key: ''
+    key: 4
   },
   {
     name: '鞋帽服饰',
     icon: 'iconfushi1',
     url: '',
-    key: ''
+    key: 5
   }
 ];
 

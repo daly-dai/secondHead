@@ -1,11 +1,19 @@
 export default [
-  // {
-  //   name: 'upload',
-  //   method: 'POST',
-  //   desc: '上传文件',
-  //   path: '/api/public/upload',
-  //   data: {
-  //     file: ''
-  //   }
-  // }
+  {
+    name: 'addGoods',
+    method: 'POST',
+    desc: '新增商品接口',
+    path: '/goods/addGoods',
+    mock: false,
+    data: {
+      avatar: '',
+      goodsname: '',
+      imgs: '',
+      price: '',
+      desc: '',
+      attritionrate: '',
+      merchandiseCategory: '',
+      sellername: ''
+    }
+  }
 ];

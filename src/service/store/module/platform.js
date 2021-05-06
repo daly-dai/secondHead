@@ -42,9 +42,7 @@ const actions = {
         }
       })
         .then(res => {
-          if (
-            res.code === Vue.prototype.$constant.apiServeCode.SUCCESS_CODE
-          ) {
+          if (res.code === Vue.prototype.$constant.apiServeCode.SUCCESS_CODE) {
             this.dispatch('setUserData', { data: res.data }); // 调用外部的根 store 赋值 data
             commit('UPDATE_DATA', res.data);
             // 设置通用请求头参数
@@ -71,9 +69,7 @@ const actions = {
         headers: { token: state.token }
       })
         .then(res => {
-          if (
-            res.code === Vue.prototype.$constant.apiServeCode.SUCCESS_CODE
-          ) {
+          if (res.code === Vue.prototype.$constant.apiServeCode.SUCCESS_CODE) {
             this.dispatch('platform/handlerDestroy');
           }
 
@@ -96,15 +92,16 @@ const actions = {
   },
   // 设置通用请求头参数
   setApiHeaderParams({ commit, state }, { token }) {
-    Vue.prototype.$loaderApiLibrary.setHeaderOptions({ token });
+    console.log(token, 88888);
+    Vue.prototype.$loaderApiLibrary.setHeaderOptions({ Authorization: token });
   },
   // 加载远程数据字典-保证页面展示时字典数据已经获取
   getDict({ commit, state }) {
     // 载入远程字典
-    const p2 = Vue.prototype.$dict.import(
-      Vue.prototype.$api['dict/getDictDataByTypeList']()
-    );
-    return Promise.all([p2]);
+    // const p2 = Vue.prototype.$dict.import(
+    // Vue.prototype.$api['dict/getDictDataByTypeList']()
+    // );
+    // return Promise.all([p2]);
     // Vue.prototype.$dict.import(Vue.prototype.$api['dict/getDictDataByTypeList']());
   }
 };

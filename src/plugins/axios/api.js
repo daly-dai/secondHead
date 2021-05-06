@@ -357,7 +357,8 @@ const Loader = class Api {
           restful
         });
         return axios(axiosParams); */
-        const AxiosProxyFunc = function () {
+        // eslint-disable-next-line space-before-function-paren
+        const AxiosProxyFunc = function() {
           this.params = outParams;
           this.outOptions = outOptions;
           this.init();
@@ -371,25 +372,29 @@ const Loader = class Api {
           thenHandle: null,
           catchHandle: null,
           finallyHandle: null,
-          then: function (thenFunc) {
+          // eslint-disable-next-line space-before-function-paren
+          then: function(thenFunc) {
             if (thenFunc) {
               this.thenHandle = thenFunc;
             }
             return this;
           },
-          catch: function (catchFunc) {
+          // eslint-disable-next-line space-before-function-paren
+          catch: function(catchFunc) {
             if (catchFunc) {
               this.catchHandle = catchFunc;
             }
             return this;
           },
-          finally: function (finallyFunc) {
+          // eslint-disable-next-line space-before-function-paren
+          finally: function(finallyFunc) {
             if (finallyFunc) {
               this.finallyHandle = finallyFunc;
             }
             return this;
           },
-          init: function () {
+          // eslint-disable-next-line space-before-function-paren
+          init: function() {
             const axiosParams = _assign({}, requestOptions, pickOptions, {
               method: method.toUpperCase(),
               url,
@@ -397,7 +402,8 @@ const Loader = class Api {
               params: pickParams,
               data: pickData,
               restful,
-              apiInstance: function () {
+              // eslint-disable-next-line space-before-function-paren
+              apiInstance: function() {
                 return {
                   thenHandle: this.thenHandle,
                   catchHandle: this.catchHandle,
@@ -611,6 +617,7 @@ const Loader = class Api {
    * @param {Object} options={} - 外部参数
    */
   setHeaderOptions(options = {}) {
+    console.log(options, 8888888);
     if (!_isEmpty(options)) {
       this.headerOptions = _assign({}, this.headerOptions, options);
     }

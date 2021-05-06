@@ -20,7 +20,8 @@ const Expand = class Filter {
    * @param {String} api - 刷新 token 的接口名称 `/auth/refresh`
    */
   refreshToken(instance, api) {
-    return new Promise(function (resolve, reject) {
+    // eslint-disable-next-line space-before-function-paren
+    return new Promise(function(resolve, reject) {
       // setTimeout(() => {
       console.warn(
         '----------请求刷新接口-------------',
@@ -59,7 +60,9 @@ const Expand = class Filter {
     const accessToken = res.data.access_token;
     store.dispatch('setUserData', { data: res.data });
     store.dispatch('platform/updateData', { data: res.data });
-    store.dispatch('platform/setApiHeaderParams', { token: accessToken });
+    store.dispatch('platform/setApiHeaderParams', {
+      token: accessToken
+    });
   }
 };
 export default new Expand();
