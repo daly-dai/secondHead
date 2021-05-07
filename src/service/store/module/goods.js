@@ -19,7 +19,7 @@ const getters = {
 const actions = {
   // 更新用户信息
   updateGoodsId({ commit, state }, res) {
-    commit('UPDATE_GOODS_ID', res.data);
+    commit('UPDATE_GOODS_ID', res);
   }
 };
 

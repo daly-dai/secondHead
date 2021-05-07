@@ -43,13 +43,14 @@ import { Dialog } from 'vant';
 export default {
   data() {
     return {
-      active: 2,
+      active: 1,
       statusList: ['已拍下', '待发货', '待收货', '已收货', '待评价'],
       statusMap: {
         1: 'obligation', // 待收货
         2: 'received', // 已发货
         3: 'successfulDeal'
       },
+      goodsData: {},
       buttonStatus: {
         // 待收货
         obligation: {
@@ -102,7 +103,17 @@ export default {
     /**
      * @description 初始化页面的数据
      */
-    initPageData() {},
+    initPageData() {
+      const params = {
+        goodsId: this.$route.params.id
+      };
+
+      this.$api['home/getGoodsById']({ params }).then(res => {
+        if (res.code === this.$constant.apiServeCode.SUCCESS_CODE) {
+          this.goodsData = res.data;
+        }
+      });
+    },
     /**
      * @description 提醒发货
      */

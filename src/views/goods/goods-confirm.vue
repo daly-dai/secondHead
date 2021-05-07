@@ -2,7 +2,7 @@
   <div :class="$style.confirm">
     <div :class="$style.confirmTop">
       <div :class="$style.goodsImg">
-        <img :src="goodsData.imgs[0] || ''" alt="" />
+        <img v-if="goodsData.imgs" :src="goodsData.imgs[0]" alt="" />
       </div>
       <span>{{ goodsData.desc }}</span>
     </div>
@@ -30,11 +30,13 @@ export default {
     return {
       goodsData: {},
       userData: '',
-      address: ''
+      address: '',
+      goodsId: ''
     };
   },
   created() {
     this.userData = this.$store.getters['platform/getData'];
+    this.goodsId = this.$store.getters['goods/getGoodsId'];
     this.getGoodsDetail();
   },
   methods: {
@@ -43,7 +45,7 @@ export default {
      */
     getGoodsDetail() {
       const params = {
-        goodsId: this.$route.params.id
+        goodsId: this.goodsId
       };
 
       this.$api['home/getGoodsById']({ params }).then(res => {
@@ -57,17 +59,14 @@ export default {
      */
     buyGoods() {
       const data = {
-        goodsId: this.$route.params.id,
+        goodsId: this.goodsId,
         status: 1
       };
 
       this.$api['home/confirmGoodsStatus']({ data }).then(res => {
         if (res.code === this.$constant.apiServeCode.SUCCESS_CODE) {
           this.$router.push({
-            name: 'goods-buyer',
-            params: {
-              id: this.$route.params.id
-            }
+            name: 'goods-buyer'
           });
         }
       });

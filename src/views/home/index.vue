@@ -113,7 +113,7 @@ export default {
 
 <style lang="less" module>
 .home {
-  padding: 40px 0 120px;
+  padding: 40px 0 200px;
   background: #fff;
   &-head {
     display: flex;

@@ -25,6 +25,7 @@
   </div>
 </template>
 <script>
+import { mapActions } from 'vuex';
 export default {
   data() {
     return {
@@ -35,6 +36,7 @@ export default {
     this.getGoodsDetail();
   },
   methods: {
+    ...mapActions(['goods/updateGoodsId']),
     /**
      * @description 获取商品详情数据
      */
@@ -50,11 +52,10 @@ export default {
       });
     },
     routerConfirm() {
+      this['goods/updateGoodsId'](this.$route.params.id);
+
       this.$router.push({
-        name: 'goods-confirm',
-        params: {
-          id: this.$route.params.id
-        }
+        name: 'goods-confirm'
       });
     }
   }
