@@ -6,6 +6,27 @@
   "description": "",
   "glyphs": [
     {
+      "icon_id": "21507261",
+      "name": "发货",
+      "font_class": "fahuo2",
+      "unicode": "e64b",
+      "unicode_decimal": 58955
+    },
+    {
+      "icon_id": "21507245",
+      "name": "收货",
+      "font_class": "shouhuo",
+      "unicode": "e64a",
+      "unicode_decimal": 58954
+    },
+    {
+      "icon_id": "21507242",
+      "name": "评价",
+      "font_class": "pingjia",
+      "unicode": "e648",
+      "unicode_decimal": 58952
+    },
+    {
       "icon_id": "4112887",
       "name": "默认头像",
       "font_class": "tubiaoku",
