@@ -142,12 +142,38 @@ const routes = [
     },
     component: () => import('@views/goods/goods-evaluation.vue')
   },
-  // {
-  //   path: '/personal',
-  //   name: 'personal',
-  //   meta: { title: '个人中心' },
-  //   component: () => import('../../views/personal/index.vue')
-  // },
+  {
+    path: '/goods-buyered',
+    name: 'goods-buyered',
+    meta: {
+      title: '已购买商品'
+    },
+    component: () => import('@views/personal/goods-buyered.vue')
+  },
+  {
+    path: '/goods-published',
+    name: 'goods-published',
+    meta: {
+      title: '已购买的商品'
+    },
+    component: () => import('@views/personal/goods-published.vue')
+  },
+  {
+    path: '/goods-saled',
+    name: 'goods-saled',
+    meta: {
+      title: '已卖出的商品'
+    },
+    component: () => import('@views/personal/goods-saled.vue')
+  },
+  {
+    path: '/goods-edit',
+    name: 'goods-edit',
+    meta: {
+      title: '编辑商品'
+    },
+    component: () => import('@views/personal/goods-edit.vue')
+  },
   {
     path: '/404',
     name: '404',

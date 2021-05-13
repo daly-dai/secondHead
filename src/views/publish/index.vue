@@ -60,21 +60,6 @@
         >
       </div>
     </van-form>
-    <!-- <van-overlay :show="show">
-      <div :class="$style.upload">
-        <van-uploader
-          v-if="fileList.length <= 9"
-          v-model="fileList"
-          :after-read="afterRead"
-          multiple
-          :max-count="9"
-          @delete="deleteImg"
-        />
-        <div :class="$style.confirm">
-          <van-button @click="saveImg" type="primary">确认</van-button>
-        </div>
-      </div>
-    </van-overlay> -->
   </div>
 </template>
 <script>
@@ -189,6 +174,8 @@ export default {
         this.goods[item] = '';
       });
 
+      this.fileList = [];
+      this.uploadFileList = [];
       this.merchandiseCategory = '';
     }
   }

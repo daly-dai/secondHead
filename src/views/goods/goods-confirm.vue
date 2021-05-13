@@ -7,11 +7,8 @@
       <span>{{ goodsData.desc }}</span>
     </div>
     <div :class="$style.confirmDetail">
-      <!-- <div>收获地址</div> -->
       <div :class="$style.confirmDetailCenter">
         <div>{{ userData.name }}</div>
-        <!-- <div>浙江省杭州市江干区下沙街道</div>
-        <div>松合时代商城</div> -->
       </div>
       <div>></div>
     </div>

@@ -20,7 +20,9 @@
 
     <div :class="$style.buyerMessage">
       <div><span>收货人信息：</span><span>代叔航</span></div>
-      <div><span>商品价格：</span><span>￥888</span></div>
+      <div>
+        <span>商品价格：</span><span>￥{{ goodsData.price }}</span>
+      </div>
     </div>
 
     <div :class="$style.buyerBottom">

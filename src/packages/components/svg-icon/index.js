@@ -19,25 +19,32 @@ const svgIcon = {
   data() {
     return {};
   },
-  created() { },
+  created() {},
   methods: {},
   render(h) {
-    return h('div', {
-      class: {
-        'svg-content': true,
-        [this.cls]: this.cls
-      }
-    }, [
-      h('svg',
-        {
-          class: 'navIcon',
-          attrs: {
-            'aria-hidden': true
-          }
-        }, [h('use',
-          { attrs: { 'xlink:href': '#' + this.iconName } }, []
-        )]
-      )]);
+    return h(
+      'div',
+      {
+        class: {
+          'svg-content': true
+        }
+      },
+      [
+        h(
+          'svg',
+          {
+            class: {
+              [this.cls]: this.cls,
+              navIcon: true
+            },
+            attrs: {
+              'aria-hidden': true
+            }
+          },
+          [h('use', { attrs: { 'xlink:href': '#' + this.iconName } }, [])]
+        )
+      ]
+    );
   }
 };
 

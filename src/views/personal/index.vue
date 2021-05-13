@@ -14,17 +14,16 @@
     </div>
     <p :class="$style.personName">我的交易</p>
     <div :class="$style.personGoods">
-      <div>
-        <base-svg-icon iconName="iconfabu1"></base-svg-icon>
-        <p>已发布</p>
-      </div>
-      <div>
-        <base-svg-icon iconName="iconfukuan"></base-svg-icon>
-        <p>我卖出的</p>
-      </div>
-      <div>
-        <base-svg-icon iconName="iconxinyongka"></base-svg-icon>
-        <p>我买到的</p>
+      <div
+        @click="routerDetail(item.path)"
+        v-for="(item, index) of routerList"
+        :key="index"
+      >
+        <base-svg-icon
+          :cls="$style.personIcon"
+          :iconName="item.icon"
+        ></base-svg-icon>
+        <p>{{ item.name }}</p>
       </div>
     </div>
   </div>
@@ -35,7 +34,24 @@ export default {
   data() {
     return {
       userName: '',
-      userImage: ''
+      userImage: '',
+      routerList: [
+        {
+          name: '已发布',
+          icon: 'iconfabu1',
+          path: 'goods-published'
+        },
+        {
+          name: '已卖出的',
+          icon: 'iconfukuan',
+          path: 'goods-saled'
+        },
+        {
+          name: '已买到的',
+          icon: 'iconxinyongka',
+          path: 'goods-buyered'
+        }
+      ]
     };
   },
   created() {
@@ -47,6 +63,15 @@ export default {
 
       this.userName = data.name;
       this.userImage = data.avatar;
+    },
+    /**
+     * @description 跳转到详情页
+     * @param {string } 路径
+     */
+    routerDetail(path) {
+      this.$router.push({
+        name: path
+      });
     }
   }
 };
@@ -99,6 +124,10 @@ export default {
     > div {
       text-align: center;
       flex: 1;
+
+      .person-icon {
+        font-size: 28px;
+      }
     }
   }
 }
