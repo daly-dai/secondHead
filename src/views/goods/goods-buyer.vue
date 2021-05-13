@@ -12,19 +12,24 @@
     </div>
     <div :class="$style.buyerDetail">
       <div :class="$style.buyerDetailImg">
-        <img src="/static/images/goodsPlaceholder.jpg" alt="" />
+        <img
+          v-if="goodsData.imgs && goodsData.imgs[0]"
+          :src="goodsData.imgs[0]"
+          alt=""
+        />
       </div>
-      <div>sndjcsdbjsdvbsdzsvz gsdfgd gdf njbvsdnjbmncxbmnb</div>
-      <div>￥888</div>
+      <div :class="$style.buyerDetailDesc">{{ goodsData.desc }}</div>
+      <div>￥{{ goodsData.price }}</div>
     </div>
 
     <div :class="$style.buyerMessage">
-      <div><span>收货人信息：</span><span>代叔航</span></div>
+      <div>
+        <span>收货人信息：</span><span>{{ goodsData.buyername }}</span>
+      </div>
       <div>
         <span>商品价格：</span><span>￥{{ goodsData.price }}</span>
       </div>
     </div>
-
     <div :class="$style.buyerBottom">
       <p
         v-for="(item, index) of buttonsMap"
@@ -41,7 +46,7 @@
   </div>
 </template>
 <script>
-import { Dialog } from 'vant';
+import { Dialog, Notify } from 'vant';
 export default {
   data() {
     return {
@@ -93,26 +98,28 @@ export default {
   },
   computed: {
     buttonsMap() {
-      if (this.active > 2) return [];
-
       const list = this.buttonStatus[this.statusMap[this.active]].buttons;
 
       return list;
     }
   },
-  created() {},
+  created() {
+    this.goodsId = this.$store.getters['goods/getGoodsId'];
+    this.initPageData();
+  },
   methods: {
     /**
      * @description 初始化页面的数据
      */
     initPageData() {
       const params = {
-        goodsId: this.$route.params.id
+        goodsId: this.goodsId
       };
 
       this.$api['home/getGoodsById']({ params }).then(res => {
         if (res.code === this.$constant.apiServeCode.SUCCESS_CODE) {
           this.goodsData = res.data;
+          this.active = this.goodsData.goodsstatus;
         }
       });
     },
@@ -125,7 +132,26 @@ export default {
     /**
      * @description 取消发货
      */
-    cancelPurchase() {},
+    cancelPurchase() {
+      Dialog.alert({
+        title: '取消购买',
+        message: '是否确认取消购买',
+        theme: 'round-button'
+      }).then(() => {
+        const data = {
+          goodsId: this.goodsId
+        };
+
+        this.$api['home/cancelPurchase']({ data }).then(res => {
+          if (res.code === this.$constant.apiServeCode.SUCCESS_CODE) {
+            Notify({ type: 'success', message: '取消购买成功' });
+            this.$router.push({
+              name: 'root'
+            });
+          }
+        });
+      });
+    },
     /**
      * @description 确认收货
      */
@@ -136,7 +162,19 @@ export default {
           '确认收货以后，钱货两讫。如出现商品问题请私下去沟通，请谨慎操作',
         theme: 'round-button'
       }).then(() => {
-        // on close
+        const data = {
+          goodsId: this.goodsId,
+          status: 4
+        };
+
+        this.$api['personal/setGoodsStatus']({ data }).then(res => {
+          if (res.code === this.$constant.apiServeCode.SUCCESS_CODE) {
+            Notify({ type: 'success', message: '收货成功' });
+            this.$router.push({
+              name: 'goods-evaluation'
+            });
+          }
+        });
       });
     },
     /**
@@ -180,13 +218,18 @@ export default {
     margin-top: 40px;
 
     &-img {
-      width: 800px;
+      width: 30%;
       border-radius: 15px;
 
       img {
         border-radius: 15px;
         width: 100%;
       }
+    }
+
+    &-desc {
+      flex: 1;
+      margin-left: 2%;
     }
 
     > div:last-child {

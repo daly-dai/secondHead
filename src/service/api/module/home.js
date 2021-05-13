@@ -22,12 +22,22 @@ export default [
   {
     name: 'confirmGoodsStatus',
     method: 'POST',
-    desc: '新增商品接口',
+    desc: '确认购买商品',
     path: '/goods/confirmGoodsStatus',
     mock: false,
     data: {
       goodsId: '',
       status: ''
+    }
+  },
+  {
+    name: 'cancelPurchase',
+    method: 'POST',
+    desc: '确认购买商品',
+    path: '/goods/cancelPurchase',
+    mock: false,
+    data: {
+      goodsId: ''
     }
   }
 ];

@@ -60,7 +60,6 @@ export default {
           const data = {
             goodsId: goodsId
           };
-          console.log(data, 888);
 
           this.$api['personal/deleteGoodsById']({ data }).then(res => {
             if (res.code === this.$constant.apiServeCode.SUCCESS_CODE) {
