@@ -19,24 +19,7 @@
         placeholder="请输入商品描述"
         :rules="[{ required: true, message: '请填写商品价格' }]"
       />
-      <div :class="$style.uploadImg">
-        <div :class="$style.uploadImgList">
-          <div
-            v-for="(item, index) of goods.imgs"
-            :key="index"
-            :class="$style.uploadImgListItem"
-          >
-            <div @click="deleteImg(index)"><van-icon name="clear" /></div>
-            <img :src="item" alt="" />
-          </div>
-        </div>
-        <van-uploader
-          v-if="fileList.length <= 9"
-          :after-read="afterRead"
-          multiple
-          :max-count="9"
-        />
-      </div>
+
       <van-field
         v-model="goods.price"
         name="商品价格"
@@ -61,6 +44,27 @@
         @select="selectMerchandise"
         close-on-click-action
       />
+
+      <div :class="$style.uploadImg">
+        <van-uploader
+          v-if="fileList.length <= 9"
+          :after-read="afterRead"
+          multiple
+          :max-count="9"
+        />
+        <div :class="$style.uploadImgList">
+          <div
+            v-for="(item, index) of goods.imgs"
+            :key="index"
+            :class="$style.uploadImgListItem"
+          >
+            <div @click="deleteImg(index)">
+              <van-icon size="1.5em" name="clear" />
+            </div>
+            <img :src="item" alt="" />
+          </div>
+        </div>
+      </div>
 
       <div style="margin: 16px;">
         <van-button round block type="info" native-type="submit"
@@ -202,19 +206,19 @@ export default {
 
   .upload-img {
     background: #fff;
-    padding: 0 16px;
+    padding: 40px 16px;
 
     &-list {
       margin: 20px;
       .flex;
       &-item {
-        width: 20%;
+        width: 40%;
         position: relative;
         margin-right: 30px;
         > div:first-child {
           position: absolute;
-          right: 0;
-          top: 0;
+          right: -0.75em;
+          top: -0.75em;
         }
         img {
           width: 100%;

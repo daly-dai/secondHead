@@ -113,6 +113,8 @@ export default {
     .register {
       font-size: 14px;
       color: #4e6ef2;
+      display: block;
+      margin: 60px;
     }
   }
 }

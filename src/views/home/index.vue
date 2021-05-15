@@ -49,7 +49,7 @@
         <div :class="$style.goodsItemPrice">￥{{ item.price }}</div>
         <div :class="$style.goodsItemUser">
           <div :class="$style.userAvatar">
-            <img v-if="item.avatar" :src="'https:' + item.avatar" alt="" />
+            <img v-if="item.avatar" :src="item.avatar" alt="" />
             <base-svg-icon v-else iconName="icontubiaoku"></base-svg-icon>
           </div>
           <span :class="$style.userName">{{ item.sellername }}</span>
