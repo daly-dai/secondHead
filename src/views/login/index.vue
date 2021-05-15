@@ -26,7 +26,7 @@
         <span @click="routerToRigister" :class="$style.register"
           >暂无账号，请注册</span
         >
-        <div style="margin: 16px">
+        <div @click="onSubmit" style="margin: 16px">
           <van-button
             color="#ffd95f"
             round
