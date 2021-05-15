@@ -156,6 +156,7 @@ export default {
         ...this.goods,
         sellername: userData.name,
         avatar: userData.avatar,
+        community: userData.community,
         imgs: this.uploadFileList.join(',')
       };
 

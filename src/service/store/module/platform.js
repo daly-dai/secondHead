@@ -65,20 +65,20 @@ const actions = {
   handleExit({ commit, state }) {
     return new Promise((resolve, reject) => {
       // 发送登出请求 （销毁 token api请求）
-      Vue.prototype.$api['login/logout']({
-        headers: { token: state.token }
-      })
-        .then(res => {
-          if (res.code === Vue.prototype.$constant.apiServeCode.SUCCESS_CODE) {
-            this.dispatch('platform/handlerDestroy');
-          }
+      // Vue.prototype.$api['login/logout']({
+      //   headers: { token: state.token }
+      // })
+      //   .then(res => {
+      //     if (res.code === Vue.prototype.$constant.apiServeCode.SUCCESS_CODE) {
+      this.dispatch('platform/handlerDestroy');
+      // }
 
-          resolve();
-        })
-        .catch(error => {
-          reject(error);
-          console.info(error);
-        });
+      resolve();
+      // })
+      // .catch(error => {
+      //   reject(error);
+      //   console.info(error);
+      // });
     });
   },
   // 更新用户信息
@@ -92,7 +92,6 @@ const actions = {
   },
   // 设置通用请求头参数
   setApiHeaderParams({ commit, state }, { token }) {
-    console.log(token, 88888);
     Vue.prototype.$loaderApiLibrary.setHeaderOptions({ Authorization: token });
   },
   // 加载远程数据字典-保证页面展示时字典数据已经获取

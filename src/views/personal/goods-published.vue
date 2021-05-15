@@ -13,7 +13,9 @@
         </div>
       </div>
       <div :class="$style.publishItemBottom">
-        <van-button type="default">编辑商品</van-button>
+        <van-button type="default" @click="routerToGoodsEdit(item._id)"
+          >编辑商品</van-button
+        >
         <van-button type="danger" @click="deleteGoods(item._id)"
           >删除商品</van-button
         >
@@ -73,6 +75,17 @@ export default {
         .catch(() => {
           // on cancel
         });
+    },
+    /**
+     * @description 跳转到编辑页面
+     */
+    routerToGoodsEdit(goodsId) {
+      this.$router.push({
+        name: 'goods-edit',
+        params: {
+          goodsId
+        }
+      });
     }
   }
 };

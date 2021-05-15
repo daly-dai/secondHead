@@ -13,7 +13,8 @@ export default [
       desc: '',
       attritionrate: '',
       merchandiseCategory: '',
-      sellername: ''
+      sellername: '',
+      community: ''
     }
   }
 ];

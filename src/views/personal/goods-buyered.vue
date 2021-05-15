@@ -4,6 +4,7 @@
       :class="$style.saleItem"
       v-for="(item, index) of goodsList"
       :key="index"
+      @click="routerToDetail(item)"
     >
       <div :class="$style.saleItemTop">
         <div>
@@ -27,10 +28,10 @@
           @click="confirmConsignor(item._id)"
           v-if="item.goodsstatus === 1"
           type="default"
-          >确认发货</van-button
+          >确认收货</van-button
         >
         <van-button v-if="item.goodsstatus >= 4" type="danger"
-          >删除商品</van-button
+          >删除商品信息</van-button
         >
       </div>
     </div>
@@ -83,17 +84,17 @@ export default {
       });
     },
     /**
-     * @description 确认发货
+     * @description 确认收货
      */
     confirmConsignor(id) {
       Dialog.confirm({
-        title: '确认发货',
-        message: '请确认是否发货成功'
+        title: '确认收货',
+        message: '是否确认收货，确认后无法更改'
       })
         .then(() => {
           const data = {
             goodsId: id,
-            status: 3
+            status: 4
           };
 
           this.$api['personal/setGoodsStatus']({ data }).then(res => {
@@ -133,6 +134,24 @@ export default {
         .catch(() => {
           // on cancel
         });
+    },
+    /**
+     * @description 跳转到商品详情页
+     */
+    routerToDetail(goods) {
+      if (goods.goodsstatus < 4) {
+        this.$router.push({
+          name: 'goods-buyer'
+        });
+      } else {
+        this.$router.push({
+          name: 'goods-detail',
+          params: {
+            id: goods._id,
+            reWatch: 1
+          }
+        });
+      }
     }
   }
 };

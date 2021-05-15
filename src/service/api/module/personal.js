@@ -43,5 +43,21 @@ export default [
       goodsId: '',
       status: ''
     }
+  },
+  {
+    name: 'updateGoodsMsg',
+    method: 'POST',
+    desc: '修改商品的信息',
+    path: '/goods/updateGoodsMsg',
+    mock: false,
+    data: {
+      goodsId: '',
+      goodsname: '',
+      imgs: '',
+      price: '',
+      desc: '',
+      attritionrate: '',
+      merchandiseCategory: ''
+    }
   }
 ];

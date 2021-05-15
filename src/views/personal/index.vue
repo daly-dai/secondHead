@@ -1,10 +1,12 @@
 <template>
   <div :class="$style.person">
     <div :class="$style.personTop">
-      <base-svg-icon
-        iconName="iconshezhi"
-        :cls="$style.personConfig"
-      ></base-svg-icon>
+      <div @click="routerToEdit">
+        <base-svg-icon
+          iconName="iconshezhi"
+          :cls="$style.personConfig"
+        ></base-svg-icon>
+      </div>
     </div>
     <div :class="$style.personHead">
       <div>
@@ -71,6 +73,15 @@ export default {
     routerDetail(path) {
       this.$router.push({
         name: path
+      });
+    },
+    /**
+     * @description 跳转到信息配置页面
+     */
+    routerToEdit() {
+      console.log(999999);
+      this.$router.push({
+        name: 'personal-msg'
       });
     }
   }

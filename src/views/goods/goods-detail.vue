@@ -19,7 +19,11 @@
         <img :src="item" alt="" />
       </div>
     </div>
-    <div :class="$style.detailBottom" @click="routerConfirm">
+    <div
+      v-if="reWatch === 0"
+      :class="$style.detailBottom"
+      @click="routerConfirm"
+    >
       我想要
     </div>
   </div>
@@ -29,10 +33,12 @@ import { mapActions } from 'vuex';
 export default {
   data() {
     return {
-      goodsData: {}
+      goodsData: {},
+      reWatch: 0
     };
   },
   created() {
+    this.reWatch = this.$route.params.reWatch;
     this.getGoodsDetail();
   },
   methods: {

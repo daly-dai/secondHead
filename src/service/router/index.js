@@ -98,6 +98,20 @@ const routes = [
     }
   },
   {
+    path: '/register', // 个人中心
+    name: 'register',
+    component: () =>
+      import(
+        /* webpackChunkName:"views/login" */ '../../views/login/register.vue'
+      ),
+    meta: {
+      title: '注册',
+      approve: true,
+      navbarVisible: false,
+      tabbarVisible: false
+    }
+  },
+  {
     path: '/user',
     name: 'user',
     component: () => import('../../views/user/index.vue')
@@ -173,6 +187,22 @@ const routes = [
       title: '编辑商品'
     },
     component: () => import('@views/personal/goods-edit.vue')
+  },
+  {
+    path: '/personal-msg',
+    name: 'personal-msg',
+    meta: {
+      title: '个人信息'
+    },
+    component: () => import('@views/personal/personal-msg.vue')
+  },
+  {
+    path: '/personal-edit',
+    name: 'personal-edit',
+    meta: {
+      title: '个人信息'
+    },
+    component: () => import('@views/personal/personal-edit.vue')
   },
   {
     path: '/404',

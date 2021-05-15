@@ -23,6 +23,9 @@
           placeholder="admin or super"
           :rules="[{ required: true, message: '请填写密码' }]"
         />
+        <span @click="routerToRigister" :class="$style.register"
+          >暂无账号，请注册</span
+        >
         <div style="margin: 16px">
           <van-button
             color="#ffd95f"
@@ -67,6 +70,14 @@ export default {
           console.info(error);
         });
     },
+    /**
+     * @description 跳转注册页面
+     */
+    routerToRigister() {
+      this.$router.push({
+        name: 'register'
+      });
+    },
     onFailed(errorInfo) {
       console.log('failed', errorInfo);
     }
@@ -98,6 +109,11 @@ export default {
     top: 75%;
     left: 50%;
     transform: translate(-50%, -50%);
+
+    .register {
+      font-size: 14px;
+      color: #4e6ef2;
+    }
   }
 }
 </style>
