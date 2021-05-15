@@ -61,7 +61,7 @@ export default {
         }
 
         if (status === 3) {
-          return '买家待确认';
+          return '交易完成';
         }
 
         if (status >= 4) {
