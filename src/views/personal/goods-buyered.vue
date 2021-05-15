@@ -8,10 +8,9 @@
     >
       <div :class="$style.saleItemTop">
         <div>
-          <base-svg-icon
-            :cls="$style.userAvatar"
-            iconName="icontubiaoku"
-          ></base-svg-icon>
+          <div :class="$style.avatar">
+            <img :src="item.avatar" alt="" />
+          </div>
           <span>{{ item.buyername }}</span>
         </div>
         <div>{{ getGoodsStatus(item.goodsstatus) }}</div>
@@ -174,7 +173,7 @@ export default {
         .flex;
         align-items: center;
 
-        .user-avatar {
+        .avatar {
           width: 2em;
           height: 2em;
           border-radius: 55%;
