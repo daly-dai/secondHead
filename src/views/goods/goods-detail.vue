@@ -38,7 +38,7 @@ export default {
     };
   },
   created() {
-    this.reWatch = this.$route.params.reWatch;
+    this.reWatch = this.$route.params.reWatch || 0;
     this.getGoodsDetail();
   },
   methods: {
