@@ -164,15 +164,13 @@ export default {
       }).then(() => {
         const data = {
           goodsId: this.goodsId,
-          status: 4
+          status: 3
         };
 
         this.$api['personal/setGoodsStatus']({ data }).then(res => {
           if (res.code === this.$constant.apiServeCode.SUCCESS_CODE) {
             Notify({ type: 'success', message: '收货成功' });
-            this.$router.push({
-              name: 'goods-evaluation'
-            });
+            this.initPageData();
           }
         });
       });

@@ -24,12 +24,15 @@
       </div>
       <div :class="$style.saleItemBottom">
         <van-button
-          @click="confirmConsignor(item._id)"
+          @click.stop="confirmConsignor(item._id)"
           v-if="item.goodsstatus === 1"
           type="default"
           >确认发货</van-button
         >
-        <van-button v-if="item.goodsstatus >= 4" type="danger"
+        <van-button
+          v-if="item.goodsstatus >= 3"
+          type="danger"
+          @click.stop="deleteGoods(item._id)"
           >删除商品</van-button
         >
       </div>
@@ -93,7 +96,7 @@ export default {
         .then(() => {
           const data = {
             goodsId: id,
-            status: 3
+            status: 2
           };
 
           this.$api['personal/setGoodsStatus']({ data }).then(res => {

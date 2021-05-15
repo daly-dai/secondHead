@@ -94,7 +94,7 @@ export default {
         .then(() => {
           const data = {
             goodsId: id,
-            status: 4
+            status: 3
           };
 
           this.$api['personal/setGoodsStatus']({ data }).then(res => {

@@ -4,6 +4,7 @@
       :class="$style.publishItem"
       v-for="(item, index) of goodsList"
       :key="index"
+      @click="routerToDetail(item)"
     >
       <div :class="$style.publishItemContent">
         <div><img :src="item.imgs[0]" alt="" /></div>
@@ -13,10 +14,10 @@
         </div>
       </div>
       <div :class="$style.publishItemBottom">
-        <van-button type="default" @click="routerToGoodsEdit(item._id)"
+        <van-button type="default" @click.stop="routerToGoodsEdit(item._id)"
           >编辑商品</van-button
         >
-        <van-button type="danger" @click="deleteGoods(item._id)"
+        <van-button type="danger" @click.stop="deleteGoods(item._id)"
           >删除商品</van-button
         >
       </div>
@@ -84,6 +85,18 @@ export default {
         name: 'goods-edit',
         params: {
           goodsId
+        }
+      });
+    },
+    /**
+     * @description 跳转到商品详情页
+     */
+    routerToDetail(goods) {
+      this.$router.push({
+        name: 'goods-detail',
+        params: {
+          id: goods._id,
+          reWatch: 1
         }
       });
     }
