@@ -43,12 +43,12 @@ export default {
           active: false,
           router: '/publish'
         },
-        {
-          name: '消息',
-          icon: 'iconxiaoxi',
-          active: false,
-          router: '/message'
-        },
+        // {
+        //   name: '消息',
+        //   icon: 'iconxiaoxi',
+        //   active: false,
+        //   router: '/message'
+        // },
         {
           name: '我的',
           icon: 'iconwode',

@@ -28,6 +28,15 @@
         placeholder="请输入商品价格"
         :rules="[{ required: true, message: '请填写商品价格' }]"
       />
+      <div :class="$style.attritionrate">
+        <span>磨损程度</span>
+        <van-dropdown-menu>
+          <van-dropdown-item
+            v-model="goods.attritionrate"
+            :options="option"
+          ></van-dropdown-item>
+        </van-dropdown-menu>
+      </div>
       <van-field
         v-model="merchandiseCategory"
         name="商品类别"
@@ -77,7 +86,6 @@
 <script>
 import { mapGetters } from 'vuex';
 import { Notify } from 'vant';
-import { mainMenu } from '../home/static.js';
 export default {
   data() {
     return {
@@ -94,17 +102,33 @@ export default {
       },
       merchandiseCategory: '',
       classShow: false,
-      actions: mainMenu
+      actions: [],
+      option: [
+        { text: '几乎全新', value: '几乎全新' },
+        { text: '轻微使用', value: '轻微使用' },
+        { text: '明显使用痕迹', value: '明显使用痕迹' }
+      ]
     };
   },
   computed: {
     ...mapGetters(['platform/getToken'])
   },
-  created() {
+  async created() {
     this.goodsId = this.$route.params.goodsId;
+    await this.getMerchandiseCategory();
     this.getGoodsDetail();
   },
   methods: {
+    /**
+     * @description 获取所有的商品分类
+     */
+    getMerchandiseCategory() {
+      this.$api['publish/getMerchandiseCategory']().then(res => {
+        if (res.code === this.$constant.apiServeCode.SUCCESS_CODE) {
+          this.actions = res.data;
+        }
+      });
+    },
     /**
      * @description 获取商品详情数据
      */
@@ -118,7 +142,7 @@ export default {
           this.goods = res.data;
 
           this.merchandiseCategory = this.actions.find(
-            item => item.key === this.goods.merchandiseCategory
+            item => item._id === this.goods.merchandiseCategory
           ).name;
         }
       });
@@ -247,6 +271,18 @@ export default {
     bottom: 20px;
     left: 50%;
     transform: translate(-50%);
+  }
+}
+
+.attritionrate {
+  position: relative;
+  > span {
+    position: absolute;
+    left: 60px;
+    font-size: 14px;
+    z-index: 120;
+    color: #666;
+    top: 80px;
   }
 }
 </style>

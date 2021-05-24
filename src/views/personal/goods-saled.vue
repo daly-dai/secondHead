@@ -158,8 +158,8 @@ export default {
         align-items: center;
 
         .avatar {
-          width: 2em;
-          height: 2em;
+          width: 1em;
+          height: 1em;
           border-radius: 55%;
           margin-right: 3%;
         }

@@ -8,7 +8,7 @@
         <input type="text" />
       </div>
       <div>
-        分类
+        全部
       </div>
     </div>
     <div :class="$style.homeCenter">
@@ -71,7 +71,8 @@ export default {
       show: false,
       mainMenu: mainMenu,
       goodList: [],
-      currentMain: ''
+      currentMain: '',
+      Community: ''
     };
   },
   created() {
@@ -79,7 +80,13 @@ export default {
   },
   methods: {
     // 初始化页面数据
-    initPage() {
+    async initPage() {
+      await this.getCommunity();
+      await this.getMerchandiseCategory();
+
+      this.getGoodsData();
+    },
+    getGoodsData() {
       const params = {
         merchandiseCategory: this.currentMain
       };
@@ -90,6 +97,10 @@ export default {
         }
       });
     },
+    changeCommunity() {},
+    // 获取社区
+    getCommunity() {},
+    getMerchandiseCategory() {},
     selectMainMenu(index) {
       if (index === this.currentMain) return false;
 

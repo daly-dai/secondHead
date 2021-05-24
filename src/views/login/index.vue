@@ -63,7 +63,7 @@ export default {
       })
         .then(res => {
           // 登录的时候对scoket进行更新
-          this.$socket.emit('login', res.data.id);
+          // this.$socket.emit('login', res.data.id);
           this.$router.push({ name: ROOT_PAGE_NAME });
         })
         .catch(error => {

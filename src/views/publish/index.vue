@@ -6,7 +6,7 @@
         name="商品名称"
         label="商品名称"
         placeholder="请输入商品名称"
-        :rules="[{ required: true, message: '请填写商品价格' }]"
+        :rules="[{ required: true, message: '请输入商品名称' }]"
       />
       <van-field
         v-model="goods.desc"
@@ -17,7 +17,7 @@
         name="商品描述"
         label="商品描述"
         placeholder="请输入商品描述"
-        :rules="[{ required: true, message: '请填写商品价格' }]"
+        :rules="[{ required: true, message: '请输入商品描述' }]"
       />
       <div :class="$style.uploadImg">
         <van-uploader
@@ -37,6 +37,24 @@
         placeholder="请输入商品价格"
         :rules="[{ required: true, message: '请填写商品价格' }]"
       />
+      <div :class="$style.attritionrate">
+        <span>磨损程度</span>
+        <van-dropdown-menu>
+          <van-dropdown-item
+            v-model="goods.attritionrate"
+            :options="option"
+          ></van-dropdown-item>
+        </van-dropdown-menu>
+      </div>
+
+      <!-- <van-field
+        v-model="goods.attritionrate"
+        name="磨损程度"
+        label="磨损程度"
+        type="number"
+        placeholder="请输入磨损程度"
+        :rules="[{ required: true, message: '请填写磨损程度' }]"
+      /> -->
       <van-field
         v-model="merchandiseCategory"
         name="商品类别"
@@ -65,7 +83,6 @@
 <script>
 import { mapGetters } from 'vuex';
 import { Notify } from 'vant';
-import { mainMenu } from '../home/static.js';
 export default {
   data() {
     return {
@@ -83,14 +100,31 @@ export default {
       },
       merchandiseCategory: '',
       classShow: false,
-      actions: mainMenu
+      actions: [],
+      option: [
+        { text: '几乎全新', value: '几乎全新' },
+        { text: '轻微使用', value: '轻微使用' },
+        { text: '明显使用痕迹', value: '明显使用痕迹' }
+      ]
     };
   },
   computed: {
     ...mapGetters(['platform/getToken'])
   },
-  created() {},
+  created() {
+    this.getMerchandiseCategory();
+  },
   methods: {
+    /**
+     * @description 获取所有的商品分类
+     */
+    getMerchandiseCategory() {
+      this.$api['publish/getMerchandiseCategory']().then(res => {
+        if (res.code === this.$constant.apiServeCode.SUCCESS_CODE) {
+          this.actions = res.data;
+        }
+      });
+    },
     /**
      * @description 上传图片
      */
@@ -138,7 +172,7 @@ export default {
      * @description 选择商品类别
      */
     selectMerchandise(item) {
-      this.goods.merchandiseCategory = item.key;
+      this.goods.merchandiseCategory = item._id;
       this.merchandiseCategory = item.name;
       this.classShow = false;
     },
@@ -212,6 +246,18 @@ export default {
     bottom: 20px;
     left: 50%;
     transform: translate(-50%);
+  }
+}
+
+.attritionrate {
+  position: relative;
+  > span {
+    position: absolute;
+    left: 60px;
+    font-size: 14px;
+    z-index: 120;
+    color: #666;
+    top: 80px;
   }
 }
 </style>

@@ -16,5 +16,12 @@ export default [
       sellername: '',
       community: ''
     }
+  },
+  {
+    name: 'getMerchandiseCategory',
+    method: 'GET',
+    desc: '获取所有的商品分类',
+    path: '/merchandiseCategory/getMerchandiseCategory',
+    mock: false
   }
 ];
