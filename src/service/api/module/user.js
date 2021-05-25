@@ -2,7 +2,7 @@ export default [
   {
     name: 'getCommunity',
     method: 'GET',
-    desc: '获取所有买到的商品',
+    desc: '获取所有的社区信息',
     path: '/community/getCommunity',
     mock: false
   },

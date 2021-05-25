@@ -19,6 +19,22 @@
         <img :src="item" alt="" />
       </div>
     </div>
+    <div :class="$style.detailLeaveMessage">
+      <p>全部留言</p>
+      <div :class="$style.message">
+        <van-field
+          v-model="message"
+          center
+          clearable
+          label="留言"
+          placeholder="请输入留言信息"
+        >
+          <template #button>
+            <van-button type="primary">发送</van-button>
+          </template>
+        </van-field>
+      </div>
+    </div>
     <div
       v-if="reWatch === 0"
       :class="$style.detailBottom"
@@ -34,7 +50,8 @@ export default {
   data() {
     return {
       goodsData: {},
-      reWatch: 0
+      reWatch: 0,
+      message: ''
     };
   },
   created() {
@@ -95,7 +112,7 @@ export default {
   &-imgs {
     margin-top: 30px;
     &-item {
-      width: 90%;
+      width: 80%;
       text-align: center;
       margin: 0 auto;
       margin-top: 40px;
@@ -115,6 +132,10 @@ export default {
     padding: 0 30px;
   }
 
+  &-leave-message {
+    border-top: 3px solid hsla(0, 0%, 60%, 0.3);
+  }
+
   &-bottom {
     width: 100%;
     position: fixed;
@@ -123,7 +144,6 @@ export default {
     text-align: center;
     height: 240px;
     line-height: 240px;
-    // background: rgba(20, 146, 255, 1);
     background: rgb(247, 115, 115, 1);
     font-size: 18px;
     letter-spacing: 10px;

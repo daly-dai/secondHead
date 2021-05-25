@@ -46,15 +46,6 @@
           ></van-dropdown-item>
         </van-dropdown-menu>
       </div>
-
-      <!-- <van-field
-        v-model="goods.attritionrate"
-        name="磨损程度"
-        label="磨损程度"
-        type="number"
-        placeholder="请输入磨损程度"
-        :rules="[{ required: true, message: '请填写磨损程度' }]"
-      /> -->
       <van-field
         v-model="merchandiseCategory"
         name="商品类别"

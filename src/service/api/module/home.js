@@ -6,7 +6,8 @@ export default [
     path: '/goods/getGoodsByType',
     mock: false,
     params: {
-      merchandiseCategory: ''
+      merchandiseCategory: '',
+      community: ''
     }
   },
   {

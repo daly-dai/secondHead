@@ -5,10 +5,13 @@
         易趣
       </div>
       <div :class="$style.homeInput">
-        <input type="text" />
-      </div>
-      <div>
-        全部
+        <van-dropdown-menu>
+          <van-dropdown-item
+            v-model="queryParams.community"
+            :options="option"
+            @change="changeCommunity"
+          ></van-dropdown-item>
+        </van-dropdown-menu>
       </div>
     </div>
     <div :class="$style.homeCenter">
@@ -56,23 +59,21 @@
         </div>
       </div>
     </div>
-    <!-- <div :class="$style.homeBottom">
-      <span>猜您喜欢</span>
-    </div> -->
-    <van-popup v-model="show">内容</van-popup>
   </div>
 </template>
 <script>
-import { mainMenu } from './static';
 export default {
   name: 'home',
   data() {
     return {
-      show: false,
-      mainMenu: mainMenu,
+      mainMenu: [],
       goodList: [],
-      currentMain: '',
-      Community: ''
+      currentMain: 0,
+      option: [],
+      queryParams: {
+        community: '',
+        merchandiseCategory: ''
+      }
     };
   },
   created() {
@@ -88,7 +89,7 @@ export default {
     },
     getGoodsData() {
       const params = {
-        merchandiseCategory: this.currentMain
+        ...this.queryParams
       };
 
       this.$api['home/getGoodsByType']({ params }).then(res => {
@@ -97,15 +98,71 @@ export default {
         }
       });
     },
-    changeCommunity() {},
-    // 获取社区
-    getCommunity() {},
-    getMerchandiseCategory() {},
+    /**
+     * @description 切换社区
+     */
+    changeCommunity(data) {
+      this.queryParams.community = data;
+      this.getGoodsData();
+    },
+    /**
+     * @description 获取社区
+     */
+    getCommunity() {
+      return new Promise(resolve => {
+        this.$api['user/getCommunity']().then(res => {
+          if (res.code === this.$constant.apiServeCode.SUCCESS_CODE) {
+            this.option = res.data.map(item => {
+              return {
+                text: item.name,
+                value: item._id
+              };
+            });
+            console.log(this.option, 7777);
+            this.queryParams.community = this.option[0].value;
+
+            resolve();
+          }
+        });
+      });
+    },
+    /**
+     * @description 获取所有的商品分类
+     */
+    getMerchandiseCategory() {
+      return new Promise(resolve => {
+        this.$api['publish/getMerchandiseCategory']().then(res => {
+          if (res.code === this.$constant.apiServeCode.SUCCESS_CODE) {
+            this.mainMenu = res.data.map(item => {
+              return {
+                name: item.name,
+                icon: item.iconname,
+                key: item._id
+              };
+            });
+
+            this.mainMenu.unshift({
+              name: '全部',
+              icon: 'iconfenlei',
+              key: ''
+            });
+
+            this.queryParams.merchandiseCategory = this.mainMenu[0].key;
+
+            resolve();
+          }
+        });
+      });
+    },
+    /**
+     * @description 选择商品分类
+     */
     selectMainMenu(index) {
       if (index === this.currentMain) return false;
 
       this.currentMain = index;
-      this.initPage();
+      this.queryParams.merchandiseCategory = this.mainMenu[index].key;
+      this.getGoodsData();
     },
     /**
      * @description 跳转到商品详情页
@@ -144,10 +201,8 @@ export default {
     .home-input {
       flex: 1;
       text-align: center;
-      input {
-        width: 90%;
-        border: 0;
-        border: 1px solid rgba(153, 153, 153, 0.5);
+      :global .van-dropdown-menu__bar {
+        height: 180px;
       }
     }
   }
@@ -159,6 +214,8 @@ export default {
     flex-wrap: wrap;
     justify-content: flex-start;
     padding-top: 81px;
+    max-height: 500px;
+    overflow-y: auto;
 
     &-item {
       width: 32%;
