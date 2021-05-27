@@ -1,6 +1,6 @@
 <template>
   <div :class="$style.login">
-    <p :class="$style.loginTitle">易趣</p>
+    <p :class="$style.loginTitle">社区二手资源交易平台</p>
     <div :class="$style.loginForm">
       <van-form
         validate-first
@@ -23,9 +23,7 @@
           placeholder="admin or super"
           :rules="[{ required: true, message: '请填写密码' }]"
         />
-        <span @click="routerToRigister" :class="$style.register"
-          >暂无账号，请注册</span
-        >
+
         <div @click="onSubmit" style="margin: 16px">
           <van-button
             color="#ffd95f"
@@ -34,9 +32,13 @@
             type="info"
             native-type="submit"
           >
-            提交
+            登录
           </van-button>
         </div>
+
+        <span @click="routerToRigister" :class="$style.register"
+          >暂无账号？前往注册</span
+        >
       </van-form>
     </div>
   </div>
@@ -94,12 +96,15 @@ export default {
 
   &-title {
     position: absolute;
-    width: 70%;
+    width: 80%;
     top: 18%;
     left: 50%;
     transform: translate(-50%, -50%);
-    font-size: 58px;
+    font-size: 25px;
     letter-spacing: 5px;
+    font-weight: 550;
+    color: #fff;
+    letter-spacing: 7px;
   }
 
   &-form {

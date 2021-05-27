@@ -44,7 +44,7 @@ const routes = [
     name: 'publish',
     component: () => import('@views/publish/index.vue'),
     meta: {
-      title: '发布消息',
+      title: '商品发布',
       approve: true,
       navbarVisible: false,
       tabbarVisible: true

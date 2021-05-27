@@ -63,7 +63,7 @@
         close-on-click-action
       />
 
-      <div style="margin: 16px;">
+      <div style="margin: 30px;">
         <van-button round block type="info" native-type="submit"
           >提交</van-button
         >
@@ -210,7 +210,9 @@ export default {
 
 <style lang="less" module>
 .publish {
-  padding-top: 30px;
+  .full-y;
+  padding-top: 60px;
+  background: #fff;
 
   .upload-img {
     background: #fff;

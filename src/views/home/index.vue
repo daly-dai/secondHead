@@ -178,7 +178,7 @@ export default {
 <style lang="less" module>
 .home {
   padding: 40px 0 200px;
-  .full-y;
+  // .full-y;
   background: #fff;
   &-head {
     display: flex;

@@ -7,22 +7,24 @@
  * @FilePath: \secondHand\src\packages\views\common-view\tab-bar.vue
 -->
 <template>
-  <van-tabbar route v-model="active">
-    <van-tabbar-item
-      v-for="(item, index) of bottomList"
-      :key="index"
-      :to="item.router"
-      :icon="item.icon"
-    >
-      {{ item.name }}
-      <template slot="icon">
-        <base-svg-icon
-          :class="$style.barIcon"
-          :iconName="item.icon"
-        ></base-svg-icon>
-      </template>
-    </van-tabbar-item>
-  </van-tabbar>
+  <div :class="$style.bootomTab">
+    <van-tabbar route v-model="active">
+      <van-tabbar-item
+        v-for="(item, index) of bottomList"
+        :key="index"
+        :to="item.router"
+        :icon="item.icon"
+      >
+        {{ item.name }}
+        <template slot="icon">
+          <base-svg-icon
+            :class="$style.barIcon"
+            :iconName="item.icon"
+          ></base-svg-icon>
+        </template>
+      </van-tabbar-item>
+    </van-tabbar>
+  </div>
 </template>
 
 <script>
@@ -63,6 +65,11 @@ export default {
 };
 </script>
 <style lang="less" module>
+// .bootom-tab {
+//   border-top: 1px solid #999;
+//   width: 100%;
+//   height: 200px;
+// }
 .bar-icon {
   color: #fff;
 }

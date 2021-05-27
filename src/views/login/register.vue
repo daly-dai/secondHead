@@ -58,7 +58,7 @@
         close-on-click-action
       />
 
-      <van-field name="radio" label="单选框">
+      <van-field name="radio" label="性别">
         <template #input>
           <van-radio-group v-model="userData.sex" direction="horizontal">
             <van-radio name="1">男</van-radio>
@@ -67,9 +67,10 @@
         </template>
       </van-field>
 
-      <div :class="$style.button" style="margin: 16px;">
+      <div :class="$style.button">
         <van-button
           @click="registerUserData"
+          color="#ffd95f"
           round
           block
           type="info"
@@ -194,6 +195,13 @@ export default {
 .edit {
   .full-y;
   background: #fff;
+  padding-top: 60px;
+
+  // &-title {
+  //   text-align: center;
+  //   margin-bottom: 40px;
+  //   padding-top: 40px;
+  // }
 
   .user-avatar {
     width: 350px;
@@ -204,7 +212,9 @@ export default {
   }
 
   .button {
-    margin-top: 5%;
+    width: 80%;
+    margin: 0 auto;
+    margin-top: 10%;
   }
 }
 </style>
