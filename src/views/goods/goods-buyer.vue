@@ -1,5 +1,6 @@
 <template>
   <div :class="$style.buyer">
+    <div :class="$style.buyerTop" @click="routerIndex">返回首页</div>
     <van-steps :active="active" active-color="#333">
       <van-step v-for="(item, index) of statusList" :key="index">{{
         item
@@ -47,6 +48,7 @@
 </template>
 <script>
 import { Dialog, Notify } from 'vant';
+import { ROOT_PAGE_NAME } from '@config/index.js';
 export default {
   data() {
     return {
@@ -86,11 +88,11 @@ export default {
         },
         successfulDeal: {
           buttons: [
-            {
-              text: '评价',
-              bgColor: 'rgba(238, 241, 9, 0.5)',
-              fun: this.evaluationOrder
-            }
+            // {
+            //   text: '评价',
+            //   bgColor: 'rgba(238, 241, 9, 0.5)',
+            //   fun: this.evaluationOrder
+            // }
           ]
         }
       }
@@ -176,6 +178,14 @@ export default {
       });
     },
     /**
+     * @description 跳转到首页
+     */
+    routerIndex() {
+      this.$router.push({
+        name: ROOT_PAGE_NAME
+      });
+    },
+    /**
      * @description 确认收货
      */
     evaluationOrder() {}
@@ -185,6 +195,12 @@ export default {
 <style lang="less" module>
 .buyer {
   .full-y;
+  background: #fff;
+
+  &-top {
+    padding: 60px 0 0 30px;
+    margin-bottom: 80px;
+  }
 
   &-status {
     padding: 40px;

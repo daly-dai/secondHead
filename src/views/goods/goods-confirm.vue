@@ -22,6 +22,7 @@
   </div>
 </template>
 <script>
+import { Dialog } from 'vant';
 export default {
   data() {
     return {
@@ -60,12 +61,18 @@ export default {
         status: 1
       };
 
-      this.$api['home/confirmGoodsStatus']({ data }).then(res => {
-        if (res.code === this.$constant.apiServeCode.SUCCESS_CODE) {
-          this.$router.push({
-            name: 'goods-buyer'
-          });
-        }
+      Dialog.alert({
+        title: '确认购买',
+        message: '是否确认购买',
+        theme: 'round-button'
+      }).then(() => {
+        this.$api['home/confirmGoodsStatus']({ data }).then(res => {
+          if (res.code === this.$constant.apiServeCode.SUCCESS_CODE) {
+            this.$router.push({
+              name: 'goods-buyer'
+            });
+          }
+        });
       });
     }
   }
