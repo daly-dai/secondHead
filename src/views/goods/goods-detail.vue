@@ -30,9 +30,25 @@
           placeholder="请输入留言信息"
         >
           <template #button>
-            <van-button type="primary">发送</van-button>
+            <van-button type="primary" @click="sendGoodsReply">发送</van-button>
           </template>
         </van-field>
+
+        <div
+          :class="$style.messageItem"
+          v-for="(item, index) of messageList"
+          :key="index"
+        >
+          <div :class="$style.messageItemTop">
+            <div :class="$style.messageItemTopAvatar">
+              <img :src="item.user.avatar" alt="" />
+            </div>
+            <p>{{ item.user.name }}</p>
+          </div>
+
+          <div :class="$style.messageItemDesc">{{ item.desc }}</div>
+          <div :class="$style.messageItemTime">{{ formatDate(item.date) }}</div>
+        </div>
       </div>
     </div>
     <div
@@ -46,17 +62,20 @@
 </template>
 <script>
 import { mapActions } from 'vuex';
+import { Notify } from 'vant';
 export default {
   data() {
     return {
       goodsData: {},
       reWatch: 0,
-      message: ''
+      message: '',
+      messageList: []
     };
   },
   created() {
     this.reWatch = this.$route.params.reWatch || 0;
     this.getGoodsDetail();
+    this.getReplyList();
   },
   methods: {
     ...mapActions(['goods/updateGoodsId']),
@@ -80,6 +99,60 @@ export default {
       this.$router.push({
         name: 'goods-confirm'
       });
+    },
+    /**
+     * @description 获取商品用户额留言
+     */
+    getReplyList() {
+      const params = {
+        goods: this.$route.params.id
+      };
+
+      this.$api['home/getReplyList']({ params }).then(res => {
+        if (res.code === this.$constant.apiServeCode.SUCCESS_CODE) {
+          this.messageList = res.data;
+        }
+      });
+      return false;
+    },
+    /**
+     * @description 发送商品留言
+     */
+    sendGoodsReply() {
+      if (!this.message) {
+        Notify({ type: 'warning', message: '发送内容不能为空' });
+        return false;
+      }
+
+      console.log(this.$route.params.id, 66666);
+      const data = {
+        goods: this.$route.params.id,
+        desc: this.message
+      };
+
+      this.$api['home/addGoodsReply']({ data }).then(res => {
+        if (res.code === this.$constant.apiServeCode.SUCCESS_CODE) {
+          Notify({ type: 'success', message: '留言成功' });
+          this.message = '';
+          this.getReplyList();
+        }
+      });
+    },
+    formatDate(value) {
+      const date = new Date(value);
+      const y = date.getFullYear();
+      let MM = date.getMonth() + 1;
+
+      MM = MM < 10 ? '0' + MM : MM;
+      let d = date.getDate();
+      d = d < 10 ? '0' + d : d;
+      let h = date.getHours();
+      h = h < 10 ? '0' + h : h;
+      let m = date.getMinutes();
+      m = m < 10 ? '0' + m : m;
+      let s = date.getSeconds();
+      s = s < 10 ? '0' + s : s;
+      return y + '-' + MM + '-' + d + ' ' + h + ':' + m + ':' + s;
     }
   }
 };
@@ -133,7 +206,35 @@ export default {
   }
 
   &-leave-message {
+    margin-top: 60px;
     border-top: 3px solid hsla(0, 0%, 60%, 0.3);
+
+    .message-item {
+      margin: 60px;
+      &-top {
+        .flex;
+        &-avatar {
+          width: 200px;
+          height: 200px;
+          img {
+            width: 100%;
+            display: inline-block;
+            border-radius: 55%;
+          }
+        }
+      }
+
+      &-desc {
+        margin-left: 260px;
+      }
+
+      &-time {
+        margin-top: 30px;
+        margin-left: 260px;
+        color: #999;
+        font-size: 14px;
+      }
+    }
   }
 
   &-bottom {

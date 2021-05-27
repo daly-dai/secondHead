@@ -22,8 +22,6 @@ import VAuthority from './directives/v-authority.js';
 // iconfont
 import '@/assets/font/iconfont/iconfont.css';
 import '@/assets/font/iconfont/iconfont.js';
-// import SocketIO from 'vue-socket.io';
-// import ClientSocketIO from 'socket.io-client';
 
 // ios延迟关闭 300ms延迟
 // fastClick.attach(document.body);
@@ -62,15 +60,6 @@ Vue.config.ignoredElements = []; // 忽略在 Vue 之外的自定义元素
 Vue.config.keyCodes = {}; // 给 v-on 自定义键位别名
 Vue.config.productionTip = false;
 
-// Vue.use(
-//   new SocketIO({
-//     debug: true,
-//     connection: ClientSocketIO.connect('http://localhost:5001/', {
-//       transports: ['websocket']
-//     })
-//   })
-// );
-
 window.vm = new Vue({
   router,
   store,
@@ -81,19 +70,5 @@ window.vm = new Vue({
     // console.info(this.$constant);
     // console.info(process.env.VUE_APP_TEST, process.env.VUE_APP_ENV);
   },
-  // sockets: {
-  //   disconnect() {
-  //     console.log('Socket 断开');
-  //   },
-  //   connect_failed() {
-  //     console.log('连接失败');
-  //   },
-  //   connect() {
-  //     console.log('socket connected');
-  //   },
-  //   test1() {
-  //     console.log('test1');
-  //   }
-  // },
   render: h => h(App)
 }).$mount('#app');

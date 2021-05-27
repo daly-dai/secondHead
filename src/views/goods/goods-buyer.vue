@@ -51,7 +51,7 @@ export default {
   data() {
     return {
       active: 1,
-      statusList: ['已拍下', '待发货', '待收货', '已收货', '待评价'],
+      statusList: ['已拍下', '待交付', '待验货', '已交付'],
       statusMap: {
         1: 'obligation', // 待收货
         2: 'received', // 已发货
@@ -66,12 +66,12 @@ export default {
               text: '取消购买',
               bgColor: '#fff',
               fun: this.cancelPurchase
-            },
-            {
-              text: '提醒发货',
-              bgColor: 'rgba(238, 241, 9, 0.5)',
-              fun: this.remindDelivery
             }
+            // {
+            //   text: '提醒发货',
+            //   bgColor: 'rgba(238, 241, 9, 0.5)',
+            //   fun: this.remindDelivery
+            // }
           ]
         },
         received: {

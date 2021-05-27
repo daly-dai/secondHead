@@ -40,5 +40,26 @@ export default [
     data: {
       goodsId: ''
     }
+  },
+  {
+    name: 'addGoodsReply',
+    method: 'POST',
+    desc: '新增商品回复',
+    path: '/reply/addGoodsReply',
+    mock: false,
+    data: {
+      goods: '',
+      desc: ''
+    }
+  },
+  {
+    name: 'getReplyList',
+    method: 'GET',
+    desc: '获取商品回复列表',
+    path: '/reply/getReplyList',
+    mock: false,
+    params: {
+      goods: ''
+    }
   }
 ];

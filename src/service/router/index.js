@@ -40,28 +40,6 @@ const routes = [
     }
   },
   {
-    path: '/message', // 个人消息
-    name: 'message',
-    component: () => import('@views/message/index.vue'),
-    meta: {
-      title: '消息中心',
-      approve: true,
-      navbarVisible: false,
-      tabbarVisible: true
-    }
-  },
-  {
-    path: '/messageDetail:id', // 个人消息
-    name: 'messageDetail',
-    component: () => import('@views/message/chat-detail/index.vue'),
-    meta: {
-      title: '消息中心',
-      approve: true,
-      navbarVisible: false,
-      tabbarVisible: true
-    }
-  },
-  {
     path: '/publish', // 个人消息
     name: 'publish',
     component: () => import('@views/publish/index.vue'),

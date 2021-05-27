@@ -54,19 +54,19 @@ export default {
       // eslint-disable-next-line space-before-function-paren
       return function(status) {
         if (status === 1) {
-          return '待发货';
+          return '待交付';
         }
 
         if (status === 2) {
-          return '已发货';
+          return '待验货';
         }
 
         if (status === 3) {
-          return '交易成功';
+          return '已交付';
         }
 
         if (status >= 4) {
-          return '交易成功';
+          return '已交付';
         }
 
         return '';

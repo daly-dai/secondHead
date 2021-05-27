@@ -1,9 +1,6 @@
 <template>
   <div :class="$style.home">
     <div :class="$style.homeHead">
-      <div>
-        易趣
-      </div>
       <div :class="$style.homeInput">
         <van-dropdown-menu>
           <van-dropdown-item
@@ -118,7 +115,6 @@ export default {
                 value: item._id
               };
             });
-            console.log(this.option, 7777);
             this.queryParams.community = this.option[0].value;
 
             resolve();
@@ -182,6 +178,7 @@ export default {
 <style lang="less" module>
 .home {
   padding: 40px 0 200px;
+  .full-y;
   background: #fff;
   &-head {
     display: flex;
@@ -210,31 +207,33 @@ export default {
   &-center {
     background: url('/static/images/homeBg.png') no-repeat;
     background-size: 100%;
-    display: flex;
-    flex-wrap: wrap;
-    justify-content: flex-start;
     padding-top: 81px;
-    max-height: 500px;
+    height: 800px;
     overflow-y: auto;
+    width: 100%;
 
     &-item {
       width: 32%;
       margin-bottom: 81px;
       text-align: center;
+      display: inline-block;
       .item-icon {
-        .flex-center;
         width: 200px;
         height: 200px;
         margin: 0 auto;
         background-color: rgba(255, 255, 255, 0.4);
         border-radius: 160px;
+        position: relative;
         /* stylelint-disable */
         i {
+          display: inline-block;
           font-size: 24px;
           color: white;
           margin-right: 0 !important;
           display: inline-block;
           position: absolute;
+          top: 20%;
+          left: 20%;
         }
       }
 
