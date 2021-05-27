@@ -178,6 +178,14 @@ export default {
           height: 2em;
           border-radius: 55%;
           margin-right: 3%;
+          img {
+            width: 100%;
+            height: 100%;
+          }
+        }
+        span {
+          display: inline-block;
+          width: 400px;
         }
       }
 

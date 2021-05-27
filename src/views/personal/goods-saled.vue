@@ -15,7 +15,7 @@
         <div>{{ getGoodsStatus(item.goodsstatus) }}</div>
       </div>
       <div :class="$style.saleItemContent">
-        <div><img :src="item.imgs[0]" alt="" /></div>
+        <div class="contentImg"><img :src="item.imgs[0]" alt="" /></div>
         <div>
           <span>{{ item.desc }}</span>
           <p>￥{{ item.price }}</p>
@@ -162,6 +162,15 @@ export default {
           height: 1em;
           border-radius: 55%;
           margin-right: 3%;
+          img {
+            width: 100%;
+            height: 100%;
+          }
+        }
+
+        span {
+          display: inline-block;
+          width: 400px;
         }
       }
 
